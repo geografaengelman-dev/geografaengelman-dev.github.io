@@ -1,0 +1,488 @@
+---
+title: "Trabajo de Econometría Espacial"
+subtitle: "Autocorrelación y regresión espacial en R"
+author: "Anabella Ayelén Engelman"
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+output:
+  pdf_document:
+    number_sections: true
+    fig_caption: true
+    latex_engine: xelatex
+  word_document:
+    fig_caption: true
+fontsize: 10pt
+geometry: "left=1.8cm,right=1.8cm,top=1.6cm,bottom=1.8cm"
+header-includes:
+  - \usepackage{float}
+  - \usepackage{booktabs}
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\},fontsize=\footnotesize}
+  - \floatplacement{figure}{H}
+  - \RecustomVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize,breaklines}
+  - \AtBeginDocument{\renewcommand{\figurename}{Figura}\renewcommand{\tablename}{Tabla}}
+---
+
+```{r setup, include=FALSE}
+# Opciones generales del documento
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
+                      fig.align = "center", out.width = "90%", comment = "#>")
+options(scipen = 999)
+fuente <- "Fuente: elaboración propia con datos de state.x77 y spData."
+```
+
+<!--
+CÓMO USAR ESTE ARCHIVO
+1. Guárdalo en la misma carpeta que tu script .R.
+2. Reemplaza cada bloque "Interpretación: [...]" por tu propio texto.
+3. Presiona el botón "Knit" de RStudio (elige "Knit to PDF" o "Knit to Word").
+Este archivo no necesita setwd(): R Markdown trabaja en la carpeta donde está guardado.
+-->
+
+# Preparación del entorno
+
+```{r paquetes}
+# Instalar solo la primera vez (quitar el # para ejecutar):
+# options(timeout = 600)
+# install.packages(c("sf", "spData", "spdep", "spatialreg", "tmap", "terra",
+#                    "lwgeom", "dplyr", "GWmodel", "TH.data"))
+
+library(sf)          # objetos espaciales
+library(spData)      # capa us_states
+library(spdep)       # vecindad y autocorrelación
+library(spatialreg)  # modelos SAR y SEM
+library(tmap)        # mapas
+library(GWmodel)     # regresión geográficamente ponderada
+library(dplyr)       # unión de tablas y operador %>%
+```
+
+```{r datos}
+# 1. Datos de atributos
+data(state)
+edos <- as.data.frame(state.x77)
+names(edos) <- make.names(names(edos))      # "Life.Exp", "HS.Grad"
+edos$NAME   <- rownames(state.x77)
+edos$Region <- state.region
+names(edos)
+
+# 2. Geometría de los estados
+us <- spData::us_states
+names(us)
+st_crs(us)$epsg
+
+# 3. Verificación obligatoria: comparación de unidades
+cat("Unidades en us:", nrow(us), "\n")
+cat("Unidades en edos:", nrow(edos), "\n")
+setdiff(edos$NAME, us$NAME)                 # Alaska y Hawaii
+setdiff(us$NAME, edos$NAME)                 # District of Columbia
+
+# 4. Compatibilización
+edos <- edos %>% dplyr::filter(NAME %in% us$NAME)
+cat("Estados con datos después del filtro:", nrow(edos), "\n")
+
+mapa <- dplyr::left_join(us, edos, by = "NAME")
+cat("Unidades tras la unión:", nrow(mapa), "\n")
+cat("Unidades sin datos de Murder:", sum(is.na(mapa$Murder)), "\n")
+
+mapa <- mapa[!is.na(mapa$Murder), ]         # se excluye District of Columbia
+cat("Unidades finales para el análisis:", nrow(mapa), "\n")
+
+# 5. Reproyección
+mapa <- sf::st_transform(mapa, 5070)
+
+# 6. Modelo de regresión de referencia
+modelo <- lm(Murder ~ Illiteracy + Income + HS.Grad + Frost, data = mapa)
+summary(modelo)
+```
+
+**Interpretación:** [Escribe aquí qué unidades se pierden y por qué, por qué Alaska y Hawái no pueden entrar en una matriz de contigüidad y por qué se reproyecta a EPSG:5070.]
+
+# Pregunta 1. Autocorrelación espacial
+
+## 1.a) Estructura de vecindad
+
+```{r vecinos}
+coords <- st_coordinates(st_centroid(st_geometry(mapa)))
+
+nb_reina <- poly2nb(mapa)                   # reina
+nb_torre <- poly2nb(mapa, queen = FALSE)    # torre
+nb_knn   <- knn2nb(knearneigh(coords, k = 4))
+
+# Radio de distancia a partir de nbdists()
+nb_1   <- knn2nb(knearneigh(coords, k = 1))
+dist_1 <- unlist(nbdists(nb_1, coords))
+summary(dist_1 / 1000)                      # km
+radio_min <- max(dist_1)
+radio_min / 1000
+n.comp.nb(dnearneigh(coords, 0, radio_min))$nc
+for (d in seq(500, 800, by = 20)) {
+  cat(d, "km -> grupos:", n.comp.nb(dnearneigh(coords, 0, d * 1000))$nc, "\n")}
+nb_dist <- dnearneigh(coords, 0, 580000)    # radio elegido: 580 km
+```
+
+```{r tabla-vecinos}
+lista_nb <- list(Reina = nb_reina, Torre = nb_torre,
+                 `KNN (k=4)` = nb_knn, `Distancia 580 km` = nb_dist)
+tabla_nb <- data.frame(
+  Regiones       = sapply(lista_nb, length),
+  Enlaces        = sapply(lista_nb, function(n) sum(card(n))),
+  Promedio       = sapply(lista_nb, function(n) round(mean(card(n)), 2)),
+  Minimo         = sapply(lista_nb, function(n) min(card(n))),
+  Maximo         = sapply(lista_nb, function(n) max(card(n))),
+  Sin_vecinos    = sapply(lista_nb, function(n) sum(card(n) == 0)),
+  Grupos_conexos = sapply(lista_nb, function(n) n.comp.nb(n)$nc))
+knitr::kable(tabla_nb, booktabs = TRUE,
+             caption = paste("Comparación de las estructuras de vecindad.", fuente))
+
+mapa$NAME[card(nb_reina) != card(nb_torre)]           # cambian entre reina y torre
+mapa$NAME[card(nb_reina) == max(card(nb_reina))]      # más vecinos
+mapa$NAME[card(nb_reina) == min(card(nb_reina))]      # menos vecinos
+```
+
+```{r fig-vecinos, fig.cap = paste("Grafos de vecindad sobre el mapa de los 48 estados contiguos.", fuente), fig.height = 3.8, out.width = "80%"}
+# Gráfico: vecinos superpuestos al mapa base 
+par(mfrow = c(2, 2), mar = c(0.5, 0.5, 1.5, 0.5))
+for (i in seq_along(lista_nb)) {
+  plot(st_geometry(mapa), border = "grey60", main = names(lista_nb)[i])
+  plot(lista_nb[[i]], coords, add = TRUE, col = "red")}
+par(mfrow = c(1, 1))
+```
+
+**Interpretación:** [Escribe aquí la comparación de las cuatro estructuras, la justificación del radio de 580 km y por qué no hizo falta zero.policy.]
+
+## 1.b) Matriz de pesos y autocorrelación global
+
+```{r pesos}
+lw_W <- nb2listw(nb_reina, style = "W")   # estandarizada por filas
+lw_B <- nb2listw(nb_reina, style = "B")   # binaria
+
+# Ejemplo: pesos de Georgia
+i <- which(mapa$NAME == "Georgia")
+mapa$NAME[nb_reina[[i]]]
+lw_B$weights[[i]]
+lw_W$weights[[i]]
+
+# Pruebas globales (salidas completas en el Anexo)
+mt_murder_W <- moran.test(mapa$Murder, lw_W)
+mt_murder_B <- moran.test(mapa$Murder, lw_B)
+mt_illit_W  <- moran.test(mapa$Illiteracy, lw_W)
+
+set.seed(123)
+mc_murder <- moran.mc(mapa$Murder, lw_W, nsim = 999)
+set.seed(123)
+mc_illit <- moran.mc(mapa$Illiteracy, lw_W, nsim = 999)
+
+gt_murder <- geary.test(mapa$Murder, lw_W)
+gt_illit  <- geary.test(mapa$Illiteracy, lw_W)
+
+# Tabla resumen de las pruebas
+pruebas <- list(`Moran - Murder (W)` = mt_murder_W, `Moran - Murder (B)` = mt_murder_B,
+                `Moran - Illiteracy (W)` = mt_illit_W,
+                `Geary - Murder (W)` = gt_murder, `Geary - Illiteracy (W)` = gt_illit)
+tabla_global <- data.frame(
+  Estadistico = sapply(pruebas, function(t) t$estimate[[1]]),
+  Esperanza   = sapply(pruebas, function(t) t$estimate[[2]]),
+  Varianza    = sapply(pruebas, function(t) t$estimate[[3]]),
+  z           = sapply(pruebas, function(t) unname(t$statistic)),
+  p           = sapply(pruebas, function(t) t$p.value))
+knitr::kable(round(tabla_global, 4), booktabs = TRUE,
+             caption = paste("Pruebas de autocorrelación espacial global (contigüidad reina).", fuente))
+
+# Pruebas por permutaciones: estadístico, rango observado y valor p
+data.frame(Variable = c("Murder", "Illiteracy"),
+           I_observado = c(mc_murder$statistic, mc_illit$statistic),
+           Rango = c(mc_murder$parameter, mc_illit$parameter),
+           p = c(mc_murder$p.value, mc_illit$p.value))
+```
+
+```{r fig-permutaciones, fig.cap = paste("Distribución del I de Moran en 999 permutaciones; la línea roja es el valor observado.", fuente), fig.height = 3.4, out.width = "60%"}
+# Histograma de los I simulados frente al I observado
+hist(mc_murder$res, breaks = 30, col = "grey85",
+     main = "Moran I simulado (999 permutaciones) - Murder",
+     xlab = "I de Moran", xlim = c(-0.4, 0.7))
+abline(v = mc_murder$statistic, col = "red", lwd = 2)
+```
+
+```{r fig-moran, fig.cap = paste("Diagrama de dispersión de Moran para la tasa de homicidios (pesos W, contigüidad reina).", fuente), fig.height = 4.6, out.width = "62%"}
+# Diagrama de dispersión de Moran 
+moran.plot(mapa$Murder, lw_W, labels = mapa$NAME,
+           xlab = "Tasa de homicidios (Murder)",
+           ylab = "Rezago espacial de Murder (promedio de los vecinos)")
+```
+
+```{r cuadrantes}
+z  <- mapa$Murder - mean(mapa$Murder)
+lz <- lag.listw(lw_W, z)
+cuadrante <- ifelse(z > 0 & lz > 0, "Alto-Alto",
+                    ifelse(z < 0 & lz < 0, "Bajo-Bajo",
+                           ifelse(z > 0 & lz < 0, "Alto-Bajo", "Bajo-Alto")))
+mapa$cuadrante <- cuadrante
+split(mapa$NAME, cuadrante)
+table(cuadrante)
+```
+
+**Interpretación:** [Escribe aquí qué es la estandarización por filas, cómo se leen el I de Moran, su esperanza, varianza, desvío y valor p, qué confirman las permutaciones y Geary, y qué estados hay en cada cuadrante.]
+
+## 1.c) Autocorrelación local y conglomerados
+
+```{r lisa}
+local <- localmoran(mapa$Murder, lw_W)
+head(local)
+mapa$Ii   <- local[, 1]
+mapa$Ii_p <- local[, 5]
+sum(mapa$Ii_p < 0.05)
+
+# Clasificación LISA (procedimiento de la Práctica 9)
+signif <- 0.05
+quadrant <- vector(mode = "numeric", length = nrow(local))
+quadrant[z > 0 & lz > 0] <- 4             # alto-alto
+quadrant[z < 0 & lz < 0] <- 1             # bajo-bajo
+quadrant[z < 0 & lz > 0] <- 2             # bajo-alto
+quadrant[z > 0 & lz < 0] <- 3             # alto-bajo
+quadrant[local[, 5] > signif] <- 0        # no significativo
+mapa$LISA <- factor(quadrant, levels = 0:4,
+                    labels = c("No significativo", "Bajo-Bajo", "Bajo-Alto",
+                               "Alto-Bajo", "Alto-Alto"))
+table(mapa$LISA)
+mapa$NAME[mapa$LISA == "Alto-Alto"]
+mapa$NAME[mapa$LISA == "Bajo-Bajo"]
+
+# Getis-Ord Gi con pesos binarios
+mapa$Gi <- as.numeric(localG(mapa$Murder, lw_B))
+mapa$Gi_cat <- cut(mapa$Gi,
+                   breaks = c(-Inf, -2.58, -1.96, -1.65, 1.65, 1.96, 2.58, Inf),
+                   labels = c("Frío 99%", "Frío 95%", "Frío 90%", "No significativo",
+                              "Caliente 90%", "Caliente 95%", "Caliente 99%"))
+table(mapa$Gi_cat)
+mapa$NAME[mapa$Gi >  1.96]                # calientes
+mapa$NAME[mapa$Gi < -1.96]                # fríos
+```
+
+```{r fig-moran-local, fig.cap = paste("Moran local de la tasa de homicidios: estadístico Ii (izquierda) y valor p (derecha).", fuente), fig.height = 2.6, out.width = "95%"}
+# Mapa del Ii y mapa de su valor p 
+mapa_Ii <- tm_shape(mapa) +
+  tm_fill("Ii", style = "quantile", palette = "-RdBu", midpoint = 0,
+          title = "Moran local (Ii)") +
+  tm_borders(col = "grey40")
+
+mapa_p <- tm_shape(mapa) +
+  tm_fill("Ii_p", breaks = c(0, 0.01, 0.05, 0.1, 1), palette = "-Greens",
+          title = "Valor p") +
+  tm_borders(col = "grey40")
+
+tmap_arrange(mapa_Ii, mapa_p, ncol = 2)
+```
+
+```{r fig-lisa, fig.cap = paste("Mapa de conglomerados LISA (p < 0,05).", fuente), fig.height = 3.2, out.width = "62%"}
+tm_shape(mapa) +
+  tm_fill("LISA", palette = c("grey90", "#2c7bb6", "#abd9e9", "#fdae61", "#d7191c"),
+          title = "Conglomerados LISA") +
+  tm_borders(col = "grey40")
+```
+
+```{r fig-getis, fig.cap = paste("Puntos calientes y fríos según el Getis-Ord Gi (pesos binarios).", fuente), fig.height = 3.2, out.width = "62%"}
+tm_shape(mapa) +
+  tm_fill("Gi_cat", palette = c("#08519c", "#3182bd", "#9ecae1", "grey90",
+                                "#fcae91", "#fb6a4a", "#cb181d"),
+          title = "Getis-Ord Gi (z)") +
+  tm_borders(col = "grey40")
+```
+
+**Interpretación:** [Escribe aquí qué muestran el Moran local y su valor p, qué estados forman cada conglomerado LISA y qué agrega el Getis-Ord.]
+
+## 1.d) Robustez y conclusión
+
+```{r robustez}
+tabla_robustez <- t(sapply(lista_nb, function(n) {
+  t <- moran.test(mapa$Murder, nb2listw(n, style = "W"))
+  c(I = t$estimate[[1]], Esperanza = t$estimate[[2]], Varianza = t$estimate[[3]],
+    z = unname(t$statistic), p = t$p.value)}))
+knitr::kable(round(tabla_robustez, 4), booktabs = TRUE,
+             caption = paste("I de Moran de Murder según la estructura de vecindad (pesos W).", fuente))
+```
+
+**Interpretación:** [Escribe aquí qué significa que el resultado sea robusto y tu conclusión: ¿la tasa de homicidios se distribuye al azar?]
+
+# Pregunta 2. Regresión espacial
+
+## 2.a) El modelo MCO y sus residuos
+
+La salida de `summary(modelo)` se presenta en la sección de preparación del entorno.
+
+```{r fig-diagnostico, fig.cap = paste("Gráficos de diagnóstico del modelo MCO.", fuente), fig.height = 5.4, out.width = "68%"}
+# Los cuatro gráficos de diagnóstico 
+par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
+plot(modelo, labels.id = mapa$NAME)
+par(mfrow = c(1, 1))
+```
+
+```{r residuos}
+mapa$res  <- residuals(modelo)
+mapa$rstd <- rstandard(modelo)
+summary(mapa$rstd)
+head(st_drop_geometry(mapa)[order(-mapa$rstd), c("NAME", "Murder", "rstd")], 4)
+head(st_drop_geometry(mapa)[order(mapa$rstd),  c("NAME", "Murder", "rstd")], 4)
+```
+
+```{r fig-residuos, fig.cap = paste("Residuos estandarizados del modelo MCO.", fuente), fig.height = 3.2, out.width = "62%"}
+# Mapa de residuos con paleta divergente 
+mapa_res <- tm_shape(mapa) +
+  tm_fill("rstd", palette = "-RdBu", midpoint = 0, style = "fixed",
+          breaks = c(-3, -2, -1, -0.5, 0.5, 1, 2, 3.5),
+          title = "Residuo estandarizado") +
+  tm_borders(col = "grey40")
+mapa_res
+```
+
+```{r moran-residuos}
+moran_res_mco <- lm.morantest(modelo, lw_W)
+moran_res_mco
+```
+
+**Interpretación:** [Escribe aquí la lectura de los coeficientes y el R² ajustado, de los cuatro gráficos de diagnóstico, del mapa de residuos y del Moran de los residuos, y por qué la dependencia invalida la inferencia del MCO.]
+
+## 2.b) Diagnóstico de especificación
+
+```{r lm-tests}
+tests_lm <- lm.LMtests(modelo, lw_W, test = "all")
+tabla_lm <- data.frame(
+  Estadistico = sapply(tests_lm, function(x) unname(x$statistic)),
+  gl          = sapply(tests_lm, function(x) unname(x$parameter)),
+  p           = sapply(tests_lm, function(x) x$p.value))
+knitr::kable(round(tabla_lm, 4), booktabs = TRUE,
+             caption = paste("Tests de multiplicadores de Lagrange.", fuente))
+```
+
+**Interpretación:** [Escribe aquí la estrategia de Anselin paso a paso y qué modelo elegiste.]
+
+## 2.c) Estimación, comparación y validación
+
+```{r sar-sem}
+m_lag <- lagsarlm(Murder ~ Illiteracy + Income + HS.Grad + Frost,
+                  data = mapa, listw = lw_W)
+m_err <- errorsarlm(Murder ~ Illiteracy + Income + HS.Grad + Frost,
+                    data = mapa, listw = lw_W)
+s_lag  <- summary(m_lag)
+s_err  <- summary(m_err)
+lr_lag <- LR.Sarlm(m_lag, modelo)
+lr_err <- LR.Sarlm(m_err, modelo)
+lr_lag
+lr_err
+
+tabla_modelos <- data.frame(
+  MCO = c(coef(modelo)["Illiteracy"], coef(modelo)["Income"],
+          coef(modelo)["HS.Grad"], coef(modelo)["Frost"],
+          NA, NA, logLik(modelo), AIC(modelo), NA, NA),
+  SAR = c(coef(m_lag)["Illiteracy"], coef(m_lag)["Income"],
+          coef(m_lag)["HS.Grad"], coef(m_lag)["Frost"],
+          m_lag$rho, s_lag$Wald1$p.value, logLik(m_lag), AIC(m_lag),
+          lr_lag$statistic, lr_lag$p.value),
+  SEM = c(coef(m_err)["Illiteracy"], coef(m_err)["Income"],
+          coef(m_err)["HS.Grad"], coef(m_err)["Frost"],
+          m_err$lambda, s_err$Wald1$p.value, logLik(m_err), AIC(m_err),
+          lr_err$statistic, lr_err$p.value),
+  row.names = c("Illiteracy", "Income", "HS.Grad", "Frost",
+                "rho / lambda", "p (rho / lambda)", "Log-verosimilitud",
+                "AIC", "LR vs MCO", "p (LR)"))
+knitr::kable(round(tabla_modelos, 4), booktabs = TRUE,
+             caption = paste("Comparación de los modelos MCO, SAR y SEM.", fuente))
+```
+
+```{r impactos}
+set.seed(123)
+impactos <- impacts(m_lag, listw = lw_W, R = 1000)
+res_imp  <- summary(impactos, zstats = TRUE, short = TRUE)
+tabla_impactos <- data.frame(
+  Directo     = impactos$res$direct,
+  p_Directo   = res_imp$pzmat[, "Direct"],
+  Indirecto   = impactos$res$indirect,
+  p_Indirecto = res_imp$pzmat[, "Indirect"],
+  Total       = impactos$res$total,
+  p_Total     = res_imp$pzmat[, "Total"],
+  row.names   = attr(impactos, "bnames"))
+knitr::kable(round(tabla_impactos, 4), booktabs = TRUE,
+             caption = paste("Efectos directos, indirectos y totales del modelo SAR (1.000 simulaciones).", fuente))
+```
+
+```{r validacion}
+moran_res_sar <- moran.test(residuals(m_lag), lw_W)   # salida completa en el Anexo
+data.frame(Modelo  = c("MCO", "SAR"),
+           I_Moran = c(moran_res_mco$estimate[[1]], moran_res_sar$estimate[[1]]),
+           p       = c(moran_res_mco$p.value,       moran_res_sar$p.value))
+```
+
+**Interpretación:** [Escribe aquí la lectura de ρ y λ, la comparación de los tres modelos, qué significan los efectos directos, indirectos y totales, por qué el coeficiente ya no es el efecto marginal y qué muestra la validación.] Las salidas completas de los modelos están en el Anexo.
+
+## 2.d) Regresión geográficamente ponderada
+
+```{r gwr}
+mapa_sp <- as(mapa, "Spatial")
+invisible(capture.output(       # se omite la traza de la búsqueda del ancho de banda
+  bw <- bw.gwr(Murder ~ Illiteracy + Income + HS.Grad + Frost,
+               data = mapa_sp, approach = "AICc",
+               kernel = "bisquare", adaptive = TRUE)))
+bw
+gwr_modelo <- gwr.basic(Murder ~ Illiteracy + Income + HS.Grad + Frost,
+                        data = mapa_sp, bw = bw,
+                        kernel = "bisquare", adaptive = TRUE)
+
+mapa$b_Illit  <- gwr_modelo$SDF$Illiteracy
+mapa$t_Illit  <- gwr_modelo$SDF$Illiteracy_TV
+mapa$R2_local <- gwr_modelo$SDF$Local_R2
+summary(mapa$b_Illit)
+summary(mapa$R2_local)
+mapa$NAME[abs(mapa$t_Illit) > 1.96]            # efecto significativo
+c(R2_ajustado_MCO = summary(modelo)$adj.r.squared,
+  R2_ajustado_GWR = gwr_modelo$GW.diagnostic$gwR2.adj,
+  AICc_GWR        = gwr_modelo$GW.diagnostic$AICc)
+```
+
+```{r fig-gwr, fig.cap = paste("GWR: coeficiente local del analfabetismo (izquierda) y R2 local (derecha).", fuente), fig.height = 2.6, out.width = "100%"}
+# Mapas: coeficiente de Illiteracy y R2 local, en una sola figura 
+mapa_coef <- tm_shape(mapa) +
+  tm_fill("b_Illit", palette = "-RdBu", midpoint = 0, style = "fixed",
+          breaks = c(-3.1, -2, -1, 0, 1, 2, 3, 4, 5, 5.6),
+          title = "Coef. local Illiteracy") +
+  tm_borders(col = "grey40")
+
+mapa_r2 <- tm_shape(mapa) +
+  tm_fill("R2_local", palette = "YlGn", style = "quantile",
+          title = "R2 local") +
+  tm_borders(col = "grey40")
+
+tmap_arrange(mapa_coef, mapa_r2, ncol = 2)
+```
+
+**Interpretación:** [Escribe aquí el tipo de kernel y de ancho de banda y por qué, si el efecto del analfabetismo es constante y dónde es más intenso.]
+
+# Síntesis final
+
+[Escribe aquí tu síntesis: qué modelo recomiendas, tu conclusión sobre la distribución territorial de los homicidios y al menos dos limitaciones. Máximo media página.]
+
+# Referencias
+
+Anselin, L. (1988). *Spatial Econometrics: Methods and Models*. Kluwer. Anselin, L. (1995). Local Indicators of Spatial Association — LISA. *Geographical Analysis*, 27(2), 93–115. Fotheringham, A. S., Brunsdon, C. y Charlton, M. (2002). *Geographically Weighted Regression*. Wiley. Getis, A. y Ord, J. K. (1992). The Analysis of Spatial Association by Use of Distance Statistics. *Geographical Analysis*, 24(3), 189–206. Lansley, G. y Cheshire, J. (2016). *An Introduction to Spatial Data Analysis and Visualisation in R*. CDRC, UCL.
+
+\newpage
+
+# Anexo {-}
+
+## Salidas completas {-}
+
+```{r anexo-modelos}
+summary(nb_reina); summary(nb_torre); summary(nb_knn); summary(nb_dist)
+mt_murder_W; mt_murder_B; mt_illit_W
+mc_murder; mc_illit
+gt_murder; gt_illit
+moran_res_sar
+tests_lm
+s_lag
+s_err
+res_imp
+gwr_modelo
+```
+
+## Información de la sesión {-}
+
+```{r session}
+sessionInfo()
+```
