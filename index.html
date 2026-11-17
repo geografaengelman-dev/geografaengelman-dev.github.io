@@ -174,7 +174,7 @@ footer .wrap{padding-block:26px;border-top:1px solid color-mix(in srgb,var(--pap
 :root{--radius:20px;--shadow:0 1px 2px rgba(26,26,26,.04),0 12px 32px rgba(26,26,26,.06)}
 .hero{min-height:min(92vh,880px);display:flex;align-items:center}
 .hero .wrap{width:100%;padding-block:120px 110px}
-.hero canvas{opacity:.55;-webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
+.hero canvas{display:none;opacity:.55;-webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
 .hero h1{font-size:clamp(40px,6vw,74px);max-width:14ch;margin-top:30px}
 .hero p.intro{max-width:52ch;font-size:clamp(17px,1.6vw,20px)}
 .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:12px;letter-spacing:.15em;text-transform:uppercase}
@@ -269,18 +269,32 @@ footer a{color:inherit}
 @media (max-width:980px){.contact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ghband{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:620px){.repos{grid-template-columns:minmax(0,1fr)}.contact-grid{grid-template-columns:minmax(0,1fr)}}
 
-/* fuentes de cartografía histórica */
-.sources{margin-top:44px;padding:clamp(22px,3.2vw,36px);border-radius:var(--radius);background:#F3EBDD;border:1px solid #E4D6BF;background-image:repeating-linear-gradient(0deg,rgba(150,120,80,.05) 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,rgba(150,120,80,.05) 0 1px,transparent 1px 28px)}
-.sources-head h3{font-size:22px;margin-bottom:6px}
-.sources-head p{margin:0 0 20px;color:var(--muted);max-width:64ch}
-.srcs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.src{display:flex;flex-direction:column;gap:8px;padding:16px 18px;border-radius:14px;background:rgba(250,249,246,.85);border:1px solid #E4D6BF;text-decoration:none;color:var(--ink);transition:transform .2s,box-shadow .2s;min-width:0}
-.src:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.sname{font:600 16px/1.25 var(--f-display);color:#6B4F32}
-.sdesc{font-size:13.5px;color:var(--muted);line-height:1.4}
-.sgo{margin-top:auto;color:var(--signal);font-weight:600;font-size:13.5px}
-@media (max-width:980px){.srcs{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:620px){.srcs{grid-template-columns:minmax(0,1fr)}}
+
+/* mapa antiguo interactivo en el inicio */
+.hero .coords .mono{display:none}
+.hero{background:#EEE3CB}
+.oldmap{position:absolute;inset:0;overflow:hidden}
+.omlayer{position:absolute;left:0;top:0;will-change:transform}
+.omlayer img{width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none;animation:omzoom 40s ease-in-out infinite alternate;transform-origin:68% 30%}
+@keyframes omzoom{from{transform:scale(1)}to{transform:scale(1.05)}}
+@media (prefers-reduced-motion: reduce){.omlayer img{animation:none}}
+.omfade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(250,246,236,.96) 0%,rgba(250,246,236,.9) 30%,rgba(250,246,236,.45) 50%,rgba(250,246,236,0) 66%),linear-gradient(180deg,rgba(250,246,236,.5),transparent 18%,transparent 82%,rgba(240,235,227,.9))}
+.hero .wrap{position:relative;z-index:2;pointer-events:none}.hero .wrap *{pointer-events:auto}.hero .wrap{pointer-events:none}
+.lens{position:absolute;z-index:1;width:180px;height:180px;margin:-90px 0 0 -90px;border-radius:50%;pointer-events:none;opacity:0;transition:opacity .25s;background-image:url('mapa_antiguo.jpg');background-repeat:no-repeat;box-shadow:0 0 0 3px #F7F0E1,0 0 0 4px rgba(90,70,50,.5),0 12px 30px rgba(60,40,20,.3)}
+.pin{position:absolute;z-index:3;width:30px;height:30px;margin:-15px 0 0 -15px;padding:0;border:0;background:none;cursor:pointer}
+.pdot{position:absolute;inset:8px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 3px rgba(250,246,236,.95)}
+.pdot::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--signal);opacity:0;animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{transform:scale(.4);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+.tip{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translate(-50%,6px);width:240px;padding:14px 16px;border-radius:14px;background:rgba(250,249,246,.97);box-shadow:0 10px 30px rgba(60,40,20,.22);text-align:left;opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s;font:400 13.5px/1.4 var(--f-body);color:var(--muted)}
+.tip b{display:block;font:600 17px/1.2 var(--f-display);color:var(--ink);margin-bottom:4px}
+.tip a{display:inline-block;margin-top:8px;color:var(--signal);font-weight:600;text-decoration:none}
+.pin:hover .tip,.pin:focus-visible .tip,.pin.open .tip{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.pin:hover,.pin.open{z-index:4}
+.omcap{position:absolute;right:16px;bottom:12px;z-index:2;font:500 11.5px var(--f-body);letter-spacing:.04em;color:#6B5440;background:rgba(250,246,236,.85);padding:4px 12px;border-radius:999px}
+@media (max-width:700px){
+  .omfade{background:linear-gradient(180deg,rgba(250,246,236,.55),rgba(250,246,236,.82) 30%,rgba(250,246,236,.9) 70%,rgba(240,235,227,.95))}
+  .pin{display:none}.omcap{display:none}
+}
 </style>
 
 <header>
@@ -297,7 +311,12 @@ footer a{color:inherit}
 </header>
 
 <div class="hero" id="inicio">
-  <canvas id="topo" aria-hidden="true"></canvas>
+  <div class="oldmap" aria-hidden="false">
+    <div class="omlayer" id="omlayer"><img src="mapa_antiguo.jpg" alt="" width="2600" height="1625"><button type="button" class="pin" style="left:68.65%;top:24.87%" aria-label="Gran Mendoza"><span class="pdot"></span><span class="tip"><b>Gran Mendoza</b><span>Planificación urbana en el Gobierno de Mendoza, historia de las inundaciones aluvionales (1928–2015) y el Archivo Histórico del Agua.</span><a href="#trabajos">Ver trabajos →</a></span></button><button type="button" class="pin" style="left:72.3%;top:31.6%" aria-label="Río Tunuyán"><span class="pdot"></span><span class="tip"><b>Río Tunuyán</b><span>Litigios y apropiación del agua a fines del siglo XIX.</span><a href="#investigaciones">Ver investigación →</a></span></button><button type="button" class="pin" style="left:65.88%;top:36.84%" aria-label="Valle de Uco"><span class="pdot"></span><span class="tip"><b>Valle de Uco</b><span>Geografías del trabajo en la nueva vitivinicultura.</span><a href="#investigaciones">Ver investigación →</a></span></button><button type="button" class="pin" style="left:56.42%;top:32.24%" aria-label="Gran Santiago"><span class="pdot"></span><span class="tip"><b>Gran Santiago</b><span>Precio de la vivienda y acceso a plazas: 102.642 ventas analizadas.</span><a href="#trabajos">Ver proyecto →</a></span></button></div>
+    <div class="lens" id="lens" aria-hidden="true"></div>
+    <div class="omfade" aria-hidden="true"></div>
+    <span class="omcap">Mendoza y Cuyo al estilo de los atlas del siglo XIX · tocá los puntos</span>
+  </div>
   <div class="wrap">
     <div class="coords"><span class="eyebrow">Geografía aplicada · Mendoza, Argentina</span><span class="mono">32°53′ S · 68°50′ O</span></div>
     <h1>Geografía aplicada a lo que <span>necesitás resolver</span></h1>
@@ -586,13 +605,6 @@ footer a{color:inherit}
         <span>Anabella Engelman · Jornadas de Ecología Política 2019</span></span>
       </div>
     </div>
-    <div class="sources">
-      <div class="sources-head">
-        <h3>Archivos de cartografía histórica que consulto</h3>
-        <p>Repositorios abiertos de mapas antiguos que uso para investigar la historia del territorio, del agua y de las ciudades.</p>
-      </div>
-      <div class="srcs"><a class="src" href="https://www.davidrumsey.com/" target="_blank" rel="noopener"><span class="sname">David Rumsey Map Collection</span><span class="sdesc">Más de 150.000 mapas históricos digitalizados de todo el mundo, con atlas argentinos del siglo XIX.</span><span class="sgo">Visitar →</span></a><a class="src" href="https://www.educ.ar/recursos/129472/mapas-historicos-del-actual-territorio-argentino" target="_blank" rel="noopener"><span class="sname">educ.ar · Mapas históricos del territorio argentino</span><span class="sdesc">Mapas físicos y políticos de 1852 a 1954, de Du Graty, Paz Soldán y Kühn, entre otros.</span><span class="sgo">Visitar →</span></a><a class="src" href="https://www.educ.ar/recursos/129474" target="_blank" rel="noopener"><span class="sname">educ.ar · Mapas históricos de las provincias</span><span class="sdesc">Colección de mapas antiguos del territorio de cada provincia argentina.</span><span class="sgo">Visitar →</span></a><a class="src" href="https://viejosmapas.com/" target="_blank" rel="noopener"><span class="sname">Viejos Mapas</span><span class="sdesc">Archivo digital de cartografía histórica de Argentina, Sudamérica y el mundo.</span><span class="sgo">Visitar →</span></a></div>
-    </div>
   </div>
 </section>
 
@@ -688,28 +700,34 @@ footer a{color:inherit}
 
   try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('pending');io.unobserve(e.target);}});},{threshold:.12});document.querySelectorAll('.group,.feature,.work,.step,.sec-head').forEach(function(el){if(el.getBoundingClientRect().top>innerHeight){el.classList.add('reveal','pending');io.observe(el);}});}}catch(e){}
   var hd=document.querySelector('header');function hs(){hd.classList.toggle('scrolled',scrollY>40);}addEventListener('scroll',hs,{passive:true});hs();
-  // contour lines behind the hero
-  var c=document.getElementById('topo'), ctx=c.getContext('2d');
-  function draw(){
-    var w=c.clientWidth,h=c.clientHeight,d=window.devicePixelRatio||1;
-    c.width=w*d;c.height=h*d;ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,w,h);
-    ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue('--contour').trim();
-    ctx.lineWidth=1.2;
-    var cx=w*0.82, cy=h*0.38;
-    for(var k=1;k<22;k++){
-      var r=26*k; ctx.beginPath();
-      for(var i=0;i<=120;i++){
-        var a=i/120*Math.PI*2;
-        var rr=r*(1+0.07*Math.sin(3*a+k*0.21)+0.045*Math.sin(5*a+k*0.37)+0.02*Math.cos(2*a));
-        var x=cx+rr*Math.cos(a), y=cy+rr*0.78*Math.sin(a);
-        i?ctx.lineTo(x,y):ctx.moveTo(x,y);
-      }
-      ctx.stroke();
-    }
+  // mapa antiguo interactivo del inicio
+  var hero=document.getElementById('inicio'), lay=document.getElementById('omlayer'), lens=document.getElementById('lens'), R=1.6;
+  var mx=0,my=0,tx=0,ty=0,base={w:0,h:0,x:0,y:0};
+  function fit(){
+    var W=hero.clientWidth,H=hero.clientHeight,w=Math.max(W,H*R)*1.06,h=w/R;
+    var mobile=W<700, ax=mobile?0.66:0.64;            // dejar Mendoza a la vista
+    var x=Math.min(0,Math.max(W-w,W*(mobile?0.5:0.68)-w*ax));
+    base={w:w,h:h,x:x,y:(H-h)/2};lay.style.width=w+'px';lay.style.height=h+'px';place();
   }
-  draw();
-  addEventListener('resize',draw);
-  try{ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);}catch(e){}
-  new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  function place(){lay.style.transform='translate3d('+(base.x+tx)+'px,'+(base.y+ty)+'px,0)';}
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function loop(){tx+=(mx-tx)*0.06;ty+=(my-ty)*0.06;place();if(Math.abs(mx-tx)>.2||Math.abs(my-ty)>.2)requestAnimationFrame(loop);else running=false;}
+  var running=false;
+  hero.addEventListener('pointermove',function(e){
+    var r=hero.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+    if(!reduce){mx=-px*28;my=-py*20;if(!running){running=true;requestAnimationFrame(loop);}}
+    if(e.target.closest('.pin')){lens.style.opacity=0;}else if(e.pointerType==='mouse'&&!e.target.closest('.wrap a,.wrap .btn,.tip')){
+      var lr=lay.getBoundingClientRect(),Z=2.3,lx=e.clientX-lr.left,ly=e.clientY-lr.top;
+      if(lx>0&&ly>0&&lx<lr.width&&ly<lr.height&&(e.clientX-r.left)>r.width*0.5){
+        lens.style.opacity=1;lens.style.left=(e.clientX-r.left)+'px';lens.style.top=(e.clientY-r.top)+'px';
+        lens.style.backgroundSize=(lr.width*Z)+'px '+(lr.height*Z)+'px';
+        lens.style.backgroundPosition=(-lx*Z+90)+'px '+(-ly*Z+90)+'px';
+      } else lens.style.opacity=0;
+    }
+  });
+  hero.addEventListener('pointerleave',function(){lens.style.opacity=0;mx=my=0;if(!running){running=true;requestAnimationFrame(loop);}});
+  document.querySelectorAll('.pin').forEach(function(p){p.addEventListener('click',function(ev){if(ev.target.closest('a'))return;var o=p.classList.contains('open');document.querySelectorAll('.pin.open').forEach(function(q){q.classList.remove('open')});if(!o)p.classList.add('open');});});
+  document.addEventListener('click',function(e){if(!e.target.closest('.pin'))document.querySelectorAll('.pin.open').forEach(function(q){q.classList.remove('open')});});
+  fit();addEventListener('resize',fit);
 })();
 </script>
