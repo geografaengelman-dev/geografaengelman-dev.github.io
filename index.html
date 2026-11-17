@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Anabella Engelman, geógrafa en Mendoza: análisis espacial, cartografía, consultoría socioambiental, clases e historia y patrimonio.">
 <title>Anabella Engelman, Geógrafa</title>
+<script>(function(){var t='dark';try{t=localStorage.getItem('tema')||'dark';}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
+<link rel="preload" as="image" href="mapa_antiguo.jpg" fetchpriority="high">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Anabella Engelman · Geografía aplicada", "url": "https://geografaengelman-dev.github.io/", "image": "https://geografaengelman-dev.github.io/og-image.jpg", "description": "Análisis espacial, cartografía, consultoría socioambiental, clases e historia de lugares en Mendoza, Argentina.", "email": "geografaengelman@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Godoy Cruz", "addressRegion": "Mendoza", "addressCountry": "AR"}, "areaServed": "Argentina", "founder": {"@type": "Person", "name": "Anabella Ayelén Engelman", "jobTitle": "Geógrafa", "sameAs": ["https://www.linkedin.com/in/anabella-engelman-ab1aaa80/", "https://github.com/geografaengelman-dev", "https://orcid.org/0000-0002-0718-2762", "https://scholar.google.com/citations?user=TMBzy7kAAAAJ"]}, "knowsAbout": ["Sistemas de Información Geográfica", "Análisis espacial", "Cartografía", "Teledetección", "Geografía urbana", "Consultoría socioambiental"]}</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#2D6A4F">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Anabella Engelman · Geógrafa">
+<meta property="og:title" content="Anabella Engelman · Geografía aplicada">
+<meta property="og:description" content="Análisis espacial, cartografía, consultoría socioambiental, clases e historia de lugares en Mendoza.">
+<meta property="og:image" content="https://geografaengelman-dev.github.io/og-image.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="https://geografaengelman-dev.github.io/">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -302,12 +317,165 @@ footer a{color:inherit}
 .reslink{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;margin-top:18px;padding:14px 18px;border-radius:14px;background:#E3EDE6;text-decoration:none;color:var(--accent-dark);transition:background .2s,transform .2s}
 .reslink:hover{background:#D5E6DA;transform:translateY(-2px)}
 .reslink span{font-weight:600}.reslink small{grid-column:1;color:var(--muted);font-size:13.5px}.reslink b{grid-row:1/3;grid-column:2;font-size:20px}
+
+/* portada aliviada */
+.more{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:28px}.more span{color:var(--muted);font-size:15px}
+.more-tl{margin-top:14px}.more-tl summary{cursor:pointer;font-weight:600;color:var(--accent);list-style:none;padding:8px 0}
+.more-tl summary::-webkit-details-marker{display:none}.more-tl summary::after{content:" ▾"}.more-tl[open] summary::after{content:" ▴"}
+
+/* servicios destacados */
+.svc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.svc{display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(26,26,26,.06);overflow:hidden;transition:transform .25s,box-shadow .25s;min-width:0}
+.svc:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(26,26,26,.05),0 22px 44px rgba(26,26,26,.12)}
+.svc-top{display:flex;gap:16px;align-items:center;padding:24px 26px;color:#fff}
+.svc-g .svc-top{background:var(--accent)}.svc-t .svc-top{background:var(--signal)}
+.svc-top h3{font-size:clamp(21px,2.4vw,25px);color:#fff}
+.svc-top p{margin:4px 0 0;font-size:15px;color:rgba(255,255,255,.88);line-height:1.4}
+.svc-ic{flex:0 0 auto;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center}
+.svc-ic svg{width:30px;height:30px}.svc-ic svg,.svc-ic svg *{fill:none!important;stroke:#fff!important;stroke-width:2!important;stroke-linecap:round;stroke-linejoin:round}.svc-ic svg .f{fill:#fff!important}
+.svc-list{list-style:none;margin:0;padding:10px 26px 4px}
+.svc-list li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 0;border-bottom:1px dashed var(--rule)}
+.svc-list li:last-child{border-bottom:0}
+.svc-list span{font-weight:500;font-size:16px}
+.svc-list b{flex:0 0 auto;font-size:14px;font-weight:700;color:var(--accent-dark);background:rgba(163,177,138,.28);padding:4px 11px;border-radius:999px;white-space:nowrap}
+.svc-t .svc-list b{color:#8A4529;background:#F4E3DA}
+.svc-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 26px 20px;font-size:13.5px;color:var(--muted)}
+.svc-foot a{font-weight:700;color:var(--signal);text-decoration:none;white-space:nowrap}.svc-g .svc-foot a{color:var(--accent)}
+.svc-more{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:26px}.svc-more span{font-size:14px;color:var(--muted)}
+.reslink2{font-weight:600;color:var(--accent);text-decoration:none}
+@media (max-width:860px){.svc-grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:420px){.svc-list li{flex-direction:column;gap:6px}.svc-top{padding:20px}.svc-list,.svc-foot{padding-left:20px;padding-right:20px}}
+
+/* evaluación externa: accesibilidad y detalles */
+:focus-visible{outline:3px solid var(--signal,#C96F4A);outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.chip.c-code{background:#E1ECF4;color:#1F4E6B}.chip.c-gis{background:#E3EDE6;color:#1B4332}.chip.c-met{background:#F4E3DA;color:#7A3E22}
+.stat b{font-family:var(--f-display);font-weight:600;font-size:clamp(28px,3.4vw,38px);color:var(--accent)}
+nav a.active{color:var(--accent)}nav a.active::after{width:100%}
+.menu-btn{display:none;width:46px;height:46px;border-radius:12px;border:1px solid var(--rule);background:#fff;cursor:pointer;align-items:center;justify-content:center}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:20px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:transform .25s,background .25s}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}.menu-btn span::before{top:-6px}.menu-btn span::after{top:6px}
+header.open .menu-btn span{background:transparent}header.open .menu-btn span::before{transform:translateY(6px) rotate(45deg)}header.open .menu-btn span::after{transform:translateY(-6px) rotate(-45deg)}
+@media (max-width:860px){
+  header .wrap{position:relative;flex-wrap:nowrap}
+  .menu-btn{display:inline-flex}
+  header nav{display:none;position:absolute;top:100%;left:12px;right:12px;flex-direction:column;align-items:stretch;gap:0;background:#fff;border:1px solid var(--rule);border-radius:16px;box-shadow:0 18px 40px rgba(26,26,26,.14);padding:8px}
+  header.open nav{display:flex}
+  header nav a{padding:13px 14px;border-radius:10px;font-size:16px}header nav a::after{display:none}header nav a:hover,header nav a.active{background:var(--sheet)}
+  header nav a.btn-nav{text-align:center;margin-top:6px;padding:13px}
+  header nav .nav-gh{width:auto;height:auto;border:0;justify-content:flex-start;gap:10px}header nav .nav-gh::before{content:"GitHub";order:2;font-weight:500}
+  header{background:rgba(250,249,246,.95);backdrop-filter:blur(10px)}
+}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:28px;padding:clamp(20px,3vw,30px);border-radius:var(--radius);background:rgba(250,249,246,.06);border:1px solid rgba(250,249,246,.18)}
+.form h3{grid-column:1/-1;color:#fff;font-size:22px;margin:0}.form p.hint{grid-column:1/-1;margin:-6px 0 4px;color:rgba(250,249,246,.75);font-size:14px}
+.form label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:rgba(250,249,246,.9)}
+.form .full{grid-column:1/-1}
+.form input,.form select,.form textarea{font:400 16px var(--f-body);padding:12px 14px;border-radius:12px;border:1px solid rgba(250,249,246,.3);background:#fff;color:var(--ink);min-height:46px}
+.form textarea{min-height:120px;resize:vertical}
+.form button{grid-column:1/-1;justify-self:start;font:600 16px var(--f-body);padding:14px 26px;border-radius:999px;border:0;background:var(--paper);color:var(--accent-dark);cursor:pointer;min-height:48px}
+.form button:hover{background:#fff}
+.form .ok{grid-column:1/-1;margin:0;color:#E3EDE6;font-size:14px;min-height:1em}
+@media (max-width:620px){.form{grid-template-columns:minmax(0,1fr)}}
+
+/* colores de servicios según psicología del color */
+.svc-edu{--c:#2F5D8A;--cl:#E1EBF5;--cd:#1E3F60}   /* azul: confianza, concentración, aprendizaje */
+.svc-map{--c:#1D6E73;--cl:#DDEFEF;--cd:#124A4E}   /* azul petróleo: precisión, tecnología, claridad */
+.svc-env{--c:#3B7A4A;--cl:#E3EFE4;--cd:#24502F}   /* verde: naturaleza, equilibrio, sostenibilidad */
+.svc-his{--c:#9C5130;--cl:#F5E4DA;--cd:#6E361D}   /* terracota: tierra, tradición, calidez */
+.svc .svc-top{background:var(--c)}
+.svc .svc-list b{color:var(--cd);background:var(--cl)}
+.svc .svc-foot a{color:var(--c)}
+.svc{border-top:0}
+
+.work.wide{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:28px;align-items:center}
+.work.wide .wthumb{display:block;border-radius:14px;overflow:hidden;border:1px solid var(--rule);background:#fff}
+.work.wide .wimg{margin:0;width:100%;height:auto;aspect-ratio:780/510;object-fit:cover;border-radius:0}
+.work.wide h3{font-size:clamp(22px,2.6vw,28px)}
+.stats.mini{margin:14px 0 4px;max-width:420px}
+@media (max-width:860px){.work.wide{grid-template-columns:minmax(0,1fr)}}
+/* contraste AA */
+:root{--signal-text:#A5502F}
+.read,.step .n,.steps .n,.go,.src,.sgo,.svc-foot a{color:var(--signal-text)}
+.svc-top p{color:#fff}
+.ghband .label{color:#D5E4CB}
+nav a.btn-nav.active{color:#fff;background:var(--accent-dark)}nav a.btn-nav.active::after{display:none}
+
+.pbody .read,.talk .read{color:#A5502F}footer .wrap{color:rgba(250,249,246,.8)}
+
+.work:not(:has(.wimg)) .chips{margin-top:14px}.work:not(:has(.wimg)) .wlinks{margin-top:10px}
+
+/* ===== modo oscuro ===== */
+html[data-theme="dark"]{--paper:#141917;--sheet:#1A201D;--card:#1F2622;--ink:#ECE7DE;--muted:#ABA69B;--rule:#2F3833;--accent:#7CC4A0;--accent-dark:#1B4332;--btn:#2D6A4F;--signal:#E08A62;--signal-text:#E89A74;--contour:#5C7059;--shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px rgba(0,0,0,.35);color-scheme:dark}
+html[data-theme="dark"] body{background:var(--paper);color:var(--ink)}
+html[data-theme="dark"] header.scrolled,html[data-theme="dark"] header{background:rgba(20,25,23,.9)}
+html[data-theme="dark"] .hero{background:#16130E}
+html[data-theme="dark"] .omlayer img{filter:brightness(.5) sepia(.25) saturate(.9)}
+html[data-theme="dark"] .omfade{background:linear-gradient(90deg,rgba(20,25,23,.96) 0%,rgba(20,25,23,.9) 30%,rgba(20,25,23,.45) 50%,rgba(20,25,23,0) 66%),linear-gradient(180deg,rgba(20,25,23,.5),transparent 18%,transparent 82%,rgba(26,32,29,.95))}
+@media (max-width:700px){html[data-theme="dark"] .omfade{background:linear-gradient(180deg,rgba(20,25,23,.6),rgba(20,25,23,.85) 30%,rgba(20,25,23,.92) 70%,rgba(26,32,29,.97))}}
+html[data-theme="dark"] .omcap,html[data-theme="dark"] .mapcap{background:rgba(20,25,23,.8);color:#C9BBA6}
+html[data-theme="dark"] .pdot{box-shadow:0 0 0 3px rgba(20,25,23,.95)}
+html[data-theme="dark"] .tip{background:rgba(31,38,34,.98);color:var(--muted)}
+html[data-theme="dark"] .eyebrow{background:rgba(124,196,160,.12)}
+html[data-theme="dark"] .hero h1 span::after{opacity:.5}
+html[data-theme="dark"] .feature,html[data-theme="dark"] .work,html[data-theme="dark"] .svc,html[data-theme="dark"] .res,html[data-theme="dark"] .clip,html[data-theme="dark"] .ncard,html[data-theme="dark"] .paper,html[data-theme="dark"] .talk,html[data-theme="dark"] .src,html[data-theme="dark"] .menu-btn,html[data-theme="dark"] .filters button,html[data-theme="dark"] .btn.ghost,html[data-theme="dark"] .support .cup{background:var(--card);border-color:var(--rule)}
+html[data-theme="dark"] .btn.ghost{color:var(--ink)}
+html[data-theme="dark"] .group,html[data-theme="dark"] .group:nth-child(odd),html[data-theme="dark"] .group:nth-child(even){background:var(--card)}
+html[data-theme="dark"] .stats,html[data-theme="dark"] .stat{background:#232B27;border-color:var(--rule)}
+html[data-theme="dark"] figure img,html[data-theme="dark"] .wthumb,html[data-theme="dark"] .pfigs a,html[data-theme="dark"] .thumb img{filter:brightness(.88);border-color:var(--rule)}
+html[data-theme="dark"] .wthumb img{filter:none}
+html[data-theme="dark"] .btn.primary,html[data-theme="dark"] nav a.btn-nav,html[data-theme="dark"] .filters button[aria-pressed="true"]{background:var(--btn);color:#fff;border-color:var(--btn)}
+html[data-theme="dark"] .btn.primary:hover,html[data-theme="dark"] nav a.btn-nav:hover,html[data-theme="dark"] nav a.btn-nav.active{background:#3A8462;color:#fff}
+html[data-theme="dark"] .svc-list b{background:rgba(255,255,255,.08)!important;color:var(--cl)!important}
+html[data-theme="dark"] .svc-foot a{color:var(--cl)}
+html[data-theme="dark"] .chip.c-code{background:#1E3446;color:#A9CDEA}html[data-theme="dark"] .chip.c-gis{background:#1E3528;color:#A6D6B8}html[data-theme="dark"] .chip.c-met{background:#3E2519;color:#F0B596}
+html[data-theme="dark"] .chip{background:#262E2A;color:var(--muted)}
+html[data-theme="dark"] .tag{background:#1E3528;color:#A6D6B8}html[data-theme="dark"] .tag.t{background:#3E2519;color:#F0B596}
+html[data-theme="dark"] .reslink{background:#1E3528;color:#A6D6B8}html[data-theme="dark"] .reslink:hover{background:#244033}
+html[data-theme="dark"] .aside{background:#1E3528}html[data-theme="dark"] .aside.warn{background:#3A2619}
+html[data-theme="dark"] .support{background:#2A211B;border-color:#4A3528}
+html[data-theme="dark"] .btn.coffee{background:#B45E3B}
+html[data-theme="dark"] .sources,html[data-theme="dark"] .note{background:var(--sheet)}
+html[data-theme="dark"] .cc{background:#ECE7DE;color:#141917}
+html[data-theme="dark"] .cover span{background:rgba(10,20,15,.8)}
+html[data-theme="dark"] .contact,html[data-theme="dark"] .ghband,html[data-theme="dark"] .cta{background:#10251B}
+html[data-theme="dark"] .compare{background:#000}
+html[data-theme="dark"] .form input,html[data-theme="dark"] .form select,html[data-theme="dark"] .form textarea{background:#F4F1EA}
+html[data-theme="dark"] .crumbs a,html[data-theme="dark"] a.cite:hover{color:var(--accent)}
+html[data-theme="dark"] svg text[fill="#1A1A1A"],html[data-theme="dark"] svg text[fill="#5C5C5C"]{}
+html[data-theme="dark"] .art figure svg,html[data-theme="dark"] figure.wide svg{filter:brightness(.92)}
+@media (max-width:860px){html[data-theme="dark"] header nav{background:var(--card);border-color:var(--rule)}html[data-theme="dark"] header nav a:hover,html[data-theme="dark"] header nav a.active{background:#262E2A}}
+html[data-theme="dark"] .menu-btn span,html[data-theme="dark"] .menu-btn span::before,html[data-theme="dark"] .menu-btn span::after{background:var(--ink)}
+html[data-theme="dark"] header.open .menu-btn span{background:transparent}
+
+html[data-theme="dark"] .contact,html[data-theme="dark"] .ghband,html[data-theme="dark"] .cta,html[data-theme="dark"] footer{--paper:#FAF9F6;--ink:#1A1A1A}
+html[data-theme="dark"] .contact h2,html[data-theme="dark"] .ghband h3,html[data-theme="dark"] .cta h2{color:#FAF9F6}
+html[data-theme="dark"] .cover span,html[data-theme="dark"] .talk .tyear{color:#FAF9F6}
+html[data-theme="dark"] .talk .tyear{background:var(--btn)}
+
+html[data-theme="dark"] .read,html[data-theme="dark"] .pbody .read,html[data-theme="dark"] .talk .read,html[data-theme="dark"] .go,html[data-theme="dark"] .ncard .go,html[data-theme="dark"] .src,html[data-theme="dark"] .clip .src,html[data-theme="dark"] .sgo{color:#E89A74!important}
+html[data-theme="dark"] .contact .label{color:#A6D6B8}
+html[data-theme="dark"] .price{color:#A6D6B8;background:#1E3528}
+
+html[data-theme="dark"] .contact .note{background:none}
+/* botón de tema */
+header .wrap>.brand{order:1}header .wrap>nav{order:2;margin-left:auto}header .wrap>.theme-btn{order:3}header .wrap>.menu-btn{order:4}
+@media (max-width:860px){header .wrap>.theme-btn{margin-left:auto}}
+
+.theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--rule);background:transparent;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+.theme-btn svg{width:19px;height:19px}
+.theme-btn .sun{display:none}html[data-theme="dark"] .theme-btn .sun{display:block}html[data-theme="dark"] .theme-btn .moon{display:none}
+
+.wimg{height:auto}
+.wcap{margin:-4px 0 6px;font-size:12px;color:var(--muted);line-height:1.35}
 </style>
 
 <header>
   <div class="wrap">
     <a class="brand" href="#inicio">Anabella Engelman<span>.</span></a>
-    <nav aria-label="Secciones">
+    <button class="theme-btn" type="button" aria-label="Cambiar entre modo oscuro y claro" title="Modo oscuro / claro"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button><button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span></button>
+    <nav id="menu" aria-label="Secciones">
       <a href="#servicios">Servicios</a>
       <a href="#trabajos">Trabajos</a>
       <a href="#investigaciones">Investigaciones</a>
@@ -327,7 +495,7 @@ footer a{color:inherit}
   <div class="wrap">
     <div class="coords"><span class="eyebrow">Geografía aplicada · Mendoza, Argentina</span><span class="mono">32°53′ S · 68°50′ O</span></div>
     <h1>Geografía aplicada a lo que <span>necesitás resolver</span></h1>
-    <p class="intro">Soy <b>geógrafa (UNCuyo), doctoranda en Ciencias Sociales y diplomada en Análisis Espacial de Datos (Universidad de Chile)</b>. Trabajé como analista SIG en el Gobierno de Mendoza, en una consultora ambiental para un proyecto PNUMA–GEF y con clientes internacionales. Hoy doy clases, hago mapas y análisis espacial de datos, acompaño estudios socioambientales e investigo la historia de lugares y empresas de Mendoza.</p>
+    <p class="intro">Soy <b>geógrafa (UNCuyo) y doctoranda en Ciencias Sociales</b>, diplomada en Análisis Espacial de Datos (Universidad de Chile). Hago mapas y análisis espacial, doy clases y acompaño estudios socioambientales e históricos en Mendoza.</p>
     <div class="ctas">
       <a class="btn primary" href="#servicios">Ver servicios <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a class="btn ghost" href="#contacto">Hablemos</a>
@@ -340,67 +508,32 @@ footer a{color:inherit}
 <section id="servicios">
   <div class="wrap">
     <div class="sec-head">
-      <div><div class="label">Leyenda</div><h2>Servicios</h2></div>
-      <p>Cuatro áreas de trabajo, para particulares, estudiantes, empresas e instituciones. Presencial en el Gran Mendoza o virtual.</p>
+      <div><div class="label">Servicios</div><h2>¿En qué te puedo ayudar?</h2></div>
+      <p>Para particulares, estudiantes, empresas e instituciones. Presencial en el Gran Mendoza o virtual. <b>La primera charla es sin cargo.</b></p>
     </div>
-    
-    <div class="legend">
-      <article class="group">
-        <div class="ghead">
-          <svg class="sym" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 10 L17 4 L29 10 L17 16 Z"/><path d="M10 13 V21 C10 24 24 24 24 21 V13"/></svg>
-          <h3>Clases y formación</h3>
-        </div>
-        <p>Más de 8 años de docencia en secundaria y experiencia como docente universitaria.</p>
-        <ul class="items">
-          <li><strong>Clases de apoyo en Historia y Geografía</strong><span>Secundaria. Repaso de contenidos, resúmenes y mapas, y simulacros orales y escritos para las mesas de diciembre y febrero y las previas. Individual o en grupos chicos, presencial en Godoy Cruz o virtual.</span><em class="price">Individual desde $12.000 la hora · grupal desde $8.000 por persona</em></li>
-          <li><strong>Asesoría de tesis</strong><span>Grado y posgrado, en modalidad virtual. Proyecto y planteo del problema, metodología, escritura y normas APA, y preparación de la defensa.</span><em class="price">Desde $18.000 la hora · seguimiento mensual a convenir</em></li>
-          <li><strong>Curso de QGIS desde cero</strong><span>Cuatro encuentros online de dos horas, en grupos reducidos: capas y proyecciones, mapas para imprimir, datos GPS e imágenes satelitales (Copernicus).</span><em class="price">$60.000 por persona el curso completo</em></li>
-        </ul>
-        <a class="reslink" href="recursos.html"><span>Recursos didácticos gratis</span><small>Mapas para completar, guías de estudio y QGIS en PDF</small><b>→</b></a>
-        <div class="for">Estudiantes · tesistas · docentes · profesionales</div>
+    <div class="svc-grid">
+      <article class="svc svc-edu">
+        <div class="svc-top"><span class="svc-ic"><svg class="sym" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 10 L17 4 L29 10 L17 16 Z"/><path d="M10 13 V21 C10 24 24 24 24 21 V13"/></svg></span><div><h3>Clases y formación</h3><p>Aprobá la materia o la tesis con acompañamiento personalizado.</p></div></div>
+        <ul class="svc-list"><li><span>Clases de apoyo en Historia y Geografía</span><b>desde $12.000/h</b></li><li><span>Asesoría de tesis</span><b>desde $18.000/h</b></li><li><span>Curso de QGIS desde cero</span><b>$60.000</b></li></ul>
+        <div class="svc-foot"><span>Estudiantes · tesistas · docentes</span><a href="#contacto">Consultar →</a></div>
       </article>
-      <article class="group">
-        <div class="ghead">
-          <svg class="sym" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 31 C17 31 6 19 6 12 A11 11 0 0 1 28 12 C28 19 17 31 17 31 Z"/><circle class="f" cx="17" cy="12" r="4"/></svg>
-          <h3>Mapas y análisis espacial</h3>
-        </div>
-        <p>QGIS, ArcGIS, R, Python, PostgreSQL/PostGIS, GPS e imágenes satelitales de Copernicus (Sentinel).</p>
-        <ul class="items">
-          <li><strong>Mapa a medida</strong><span>Temático, de ubicación o de parcelas, listo para un informe, una tesis, una presentación o una publicación.</span><em class="price">Desde $45.000 por mapa</em></li>
-          <li><strong>Informe de entorno inmobiliario</strong><span>Escuelas, salud, comercios y espacios verdes cercanos, accesibilidad, condiciones del terreno y plano de ubicación listo para publicar.</span><em class="price">Desde $90.000 por propiedad</em></li>
-          <li><strong>Análisis espacial de datos</strong><span>Estadística espacial, detección de zonas críticas, modelos predictivos y tableros de datos para decidir con evidencia.</span><em class="price">Desde $150.000 · según datos y alcance</em></li>
-          <li><strong>Teledetección, localización y movilidad</strong><span>Uso del suelo, cultivos y riego con imágenes Sentinel del programa Copernicus; dónde ubicar un negocio o servicio; flujos y zonas de cobertura.</span><em class="price">Presupuesto a medida</em></li>
-        </ul>
-        <div class="for">Consultoras · empresas · inmobiliarias · fincas · logística</div>
+      <article class="svc svc-map">
+        <div class="svc-top"><span class="svc-ic"><svg class="sym" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 31 C17 31 6 19 6 12 A11 11 0 0 1 28 12 C28 19 17 31 17 31 Z"/><circle class="f" cx="17" cy="12" r="4"/></svg></span><div><h3>Mapas y análisis espacial</h3><p>Mapas y datos listos para decidir, presentar o publicar.</p></div></div>
+        <ul class="svc-list"><li><span>Mapa a medida</span><b>desde $45.000</b></li><li><span>Informe de entorno inmobiliario</span><b>desde $90.000</b></li><li><span>Análisis espacial de datos</span><b>desde $150.000</b></li><li><span>Teledetección y localización</span><b>a medida</b></li></ul>
+        <div class="svc-foot"><span>Empresas · inmobiliarias · consultoras · fincas</span><a href="#contacto">Consultar →</a></div>
       </article>
-      <article class="group">
-        <div class="ghead">
-          <svg class="sym" viewBox="0 0 34 34" aria-hidden="true"><circle cx="8" cy="9" r="4"/><circle cx="26" cy="11" r="4"/><circle cx="16" cy="26" r="4"/><path d="M11.5 10.5 L22 11 M10 12.5 L14 22.5 M24 14.5 L18 22.5"/></svg>
-          <h3>Consultoría socioambiental</h3>
-        </div>
-        <p>Investigación en conflictos ambientales, agua y territorio en Mendoza desde 2011.</p>
-        <ul class="items">
-          <li><strong>Estudios sociales para minería y energía</strong><span>Mapeo de actores, análisis de conflictos y antecedentes, y apoyo al relacionamiento comunitario con entrevistas y talleres.</span><em class="price">Presupuesto a medida</em></li>
-          <li><strong>Líneas de base y diagnósticos territoriales</strong><span>Población, actividades económicas y usos del suelo y del agua, como insumo para estudios de impacto ambiental.</span><em class="price">Presupuesto a medida</em></li>
-          <li><strong>Formulación de proyectos</strong><span>Búsqueda de convocatorias, objetivos, actividades, cronograma, presupuesto e informes de avance.</span><em class="price">Desde $120.000 por proyecto</em></li>
-        </ul>
-        <div class="for">Mineras · energía · consultoras ambientales · ONGs · PyMEs</div>
+      <article class="svc svc-env">
+        <div class="svc-top"><span class="svc-ic"><svg class="sym" viewBox="0 0 34 34" aria-hidden="true"><circle cx="8" cy="9" r="4"/><circle cx="26" cy="11" r="4"/><circle cx="16" cy="26" r="4"/><path d="M11.5 10.5 L22 11 M10 12.5 L14 22.5 M24 14.5 L18 22.5"/></svg></span><div><h3>Consultoría socioambiental</h3><p>Conocer el territorio y a sus actores antes de intervenir.</p></div></div>
+        <ul class="svc-list"><li><span>Estudios sociales para minería y energía</span><b>a medida</b></li><li><span>Líneas de base y diagnósticos</span><b>a medida</b></li><li><span>Formulación de proyectos</span><b>desde $120.000</b></li></ul>
+        <div class="svc-foot"><span>Minería · energía · ONGs · PyMEs</span><a href="#contacto">Consultar →</a></div>
       </article>
-      <article class="group">
-        <div class="ghead">
-          <svg class="sym" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 29 V14 L17 6 L29 14 V29"/><path d="M11 29 V20 A6 6 0 0 1 23 20 V29"/><path d="M3 29 H31"/></svg>
-          <h3>Historia y patrimonio</h3>
-        </div>
-        <p>Cinco años (2018–2023) en la catalogación y digitalización del Archivo Histórico del Agua de Mendoza.</p>
-        <ul class="items">
-          <li><strong>Texto “Nuestra historia”</strong><span>Investigación en archivos, fotos y testimonios, convertida en un relato para la web, las redes o la carta.</span><em class="price">Desde $80.000</em></li>
-          <li><strong>Historia completa y guion de visitas</strong><span>Investigación histórica, línea de tiempo, guion para guías, cartelería interpretativa y recorridos con código QR.</span><em class="price">Desde $250.000</em></li>
-          <li><strong>Organización y digitalización de archivos</strong><span>Diagnóstico del material, inventario, catalogación, escaneo y base de datos para consultar.</span><em class="price">Diagnóstico desde $40.000 · el resto según volumen</em></li>
-        </ul>
-        <div class="for">Bodegas · hoteles y casonas · restaurantes · museos · instituciones</div>
+      <article class="svc svc-his">
+        <div class="svc-top"><span class="svc-ic"><svg class="sym" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 29 V14 L17 6 L29 14 V29"/><path d="M11 29 V20 A6 6 0 0 1 23 20 V29"/><path d="M3 29 H31"/></svg></span><div><h3>Historia y patrimonio</h3><p>La historia de tu lugar, investigada y contada.</p></div></div>
+        <ul class="svc-list"><li><span>Texto «Nuestra historia»</span><b>desde $80.000</b></li><li><span>Historia completa y guion de visitas</span><b>desde $250.000</b></li><li><span>Organización de archivos</span><b>desde $40.000</b></li></ul>
+        <div class="svc-foot"><span>Bodegas · hoteles · casonas · museos</span><a href="#contacto">Consultar →</a></div>
       </article>
     </div>
-    <p class="pricenote">Valores orientativos en pesos argentinos, a noviembre de 2026. El presupuesto final depende del alcance de cada trabajo; la primera charla es sin cargo.</p>
+    <div class="svc-more"><a class="btn ghost" href="servicios.html">Ver el detalle de cada servicio →</a><a class="reslink2" href="recursos.html">📚 Recursos didácticos gratis</a><span>Valores orientativos en pesos, noviembre de 2026.</span></div>
   </div>
 </section>
 
@@ -412,125 +545,50 @@ footer a{color:inherit}
     </div>
     
 
-    <article class="feature">
-      <div class="feature-top">
-        <div>
-          <div class="label">2026 · Diplomado en Análisis Espacial de Datos, Universidad de Chile</div>
-          <h3>Precio de la vivienda en el Gran Santiago</h3>
-          <p>¿Cuánto valora el mercado la cercanía a plazas y parques? Crucé 102.642 ventas de casas (2019–2023) con zonas censales, el Censo 2017 y la capa de plazas del SIEDU. Medí la accesibilidad a áreas verdes con el modelo gravitacional de Hansen y comparé regresión hedónica con random forest y gradient boosting, validando también en barrios que el modelo no había visto.</p>
-        </div>
-        <div class="stats">
-          <div class="stat"><b>102.642</b><span>ventas de casas analizadas</span></div>
-          <div class="stat"><b>1.865</b><span>zonas censales</span></div>
-          <div class="stat"><b>10.063</b><span>plazas y parques</span></div>
-          <div class="stat"><b>R² 0,82</b><span>regresión en validación espacial por bloques</span></div>
-        </div>
-      </div>
-      <ul class="findings">
-        <li>Un año más de escolaridad promedio en la zona se asocia con un precio 19 % mayor.</li>
-        <li>Cada kilómetro de distancia al centro financiero (Tobalaba) reduce el precio un 2,6 %.</li>
-        <li>El machine learning baja el error de 921 a unas 750 UF en barrios conocidos, pero esa ventaja desaparece en sectores no vistos.</li>
-        <li>Los residuos de la regresión están agrupados en el espacio (I de Moran 0,29), lo que señala variables locales que faltan.</li>
-      </ul>
-      <div class="figs">
-        <figure><img src="fig1_precios.jpg" alt="Mapas del precio mediano de las casas por zona censal en UF y en UF por metro cuadrado, con los valores más altos en el oriente de Santiago" loading="lazy"><figcaption>Precio mediano por zona censal, en UF y en UF/m². Los quintiles más altos se concentran en el cono oriente.</figcaption></figure>
-        <figure><img src="fig6_residuos.jpg" alt="Mapas de residuos de dos modelos: la regresión muestra manchas agrupadas y el random forest con coordenadas no muestra patrón" loading="lazy"><figcaption>Residuos por zona: la regresión deja manchas agrupadas; el random forest con coordenadas, no.</figcaption></figure>
-      </div>
-      <div class="chips"><span class="chip">R</span><span class="chip">sf</span><span class="chip">Precios hedónicos</span><span class="chip">Accesibilidad de Hansen</span><span class="chip">Random forest</span><span class="chip">Gradient boosting</span><span class="chip">Validación cruzada espacial</span><span class="chip">I de Moran</span><span class="chip">Leaflet</span></div>
-      <div class="ctas">
-        <a class="btn primary" href="mapa-plazas.html" target="_blank" rel="noopener">Abrir mapa interactivo de plazas</a>
-        <a class="btn ghost" href="https://github.com/geografaengelman-dev/precio-vivienda-santiago" target="_blank" rel="noopener">Ver proyecto e informe en GitHub</a>
-      </div>
-    </article>
-    <article class="feature">
-      <div class="feature-top">
-        <div>
-          <div class="label">2026 · Diplomado en Análisis Espacial de Datos, Universidad de Chile</div>
-          <h3>Homicidios en EE.&nbsp;UU.: autocorrelación y regresión espacial</h3>
-          <p>¿La tasa de homicidios se reparte al azar entre los 48 estados contiguos, o se agrupa? Comparé cuatro criterios de vecindad, medí la autocorrelación global y local, y estimé modelos de rezago y de error espacial y una regresión geográficamente ponderada para ver si el efecto del analfabetismo cambia según la región.</p>
-        </div>
-        <div class="stats">
-          <div class="stat"><b>I = 0,61</b><span>I de Moran, robusto con 4 criterios de vecindad (p &lt; 0,001)</span></div>
-          <div class="stat"><b>2</b><span>conglomerados: Sur Profundo (alto) y Llanuras del Norte (bajo)</span></div>
-          <div class="stat"><b>ρ = 0,48</b><span>modelo de rezago espacial, el de menor AIC</span></div>
-          <div class="stat"><b>0,51 → 0,68</b><span>R² ajustado, de la regresión clásica a la GWR</span></div>
-        </div>
-      </div>
-      <ul class="findings">
-        <li>Los homicidios forman un núcleo alto en el Sur Profundo (9 estados) y uno bajo en las Llanuras del Norte; LISA y Getis-Ord coinciden.</li>
-        <li>Los residuos de la regresión clásica siguen agrupados (I = 0,18; p = 0,004): ignorar el espacio invalida la inferencia.</li>
-        <li>Los tests de Lagrange señalan el modelo de rezago (SAR): la tasa de un estado se relaciona con la de sus vecinos, más allá de sus propias características.</li>
-        <li>La GWR muestra que el efecto del analfabetismo no es constante: es fuerte en el oeste y se diluye o invierte en el noreste.</li>
-      </ul>
-      <div class="figs">
-        <figure><img src="fig_lisa.jpg" alt="Mapa de conglomerados LISA de la tasa de homicidios: estados del sudeste en rojo (alto-alto) y estados del norte de las Grandes Llanuras en azul (bajo-bajo)" loading="lazy"><figcaption>Conglomerados LISA (p &lt; 0,05): alto-alto en el Sur Profundo, bajo-bajo en las Llanuras del Norte.</figcaption></figure>
-        <figure><img src="fig_gwr.jpg" alt="Dos mapas de la regresión geográficamente ponderada: coeficiente local del analfabetismo, alto en el oeste y negativo en el noreste, y R² local, mayor en el sudeste" loading="lazy"><figcaption>GWR: coeficiente local del analfabetismo y R² local por estado.</figcaption></figure>
-      </div>
-      <div class="chips"><span class="chip">R</span><span class="chip">R Markdown</span><span class="chip">spdep</span><span class="chip">spatialreg</span><span class="chip">GWmodel</span><span class="chip">tmap</span><span class="chip">LISA</span><span class="chip">Getis-Ord</span><span class="chip">SAR / SEM</span><span class="chip">GWR</span></div>
-      <div class="ctas">
-        <a class="btn primary" href="https://github.com/geografaengelman-dev/econometria-espacial-r" target="_blank" rel="noopener">Ver código e informe en GitHub</a>
-      </div>
-    </article>
-    <article class="feature">
-      <div class="feature-top">
-        <div>
-          <div class="label">2021 · Planificación urbana y SIG</div>
-          <h3>Plan de Manejo Integral del Piedemonte</h3>
-          <p>Cartografía para planificar el piedemonte oeste de la Ciudad de Mendoza, en el límite con Las Heras: un borde urbano en zona de riesgo aluvional donde crecen barrios y condominios cerrados. Delimité la zona de estudio, propuse un límite práctico entre jurisdicciones, diseñé una red de calles públicas para conectar los condominios y analicé el acceso a equipamientos.</p>
-        </div>
-        <div class="stats">
-          <div class="stat"><b>Zona de estudio</b><span>delimitada sobre imágenes satelitales y aerofotos</span></div>
-          <div class="stat"><b>Límite práctico</b><span>propuesta entre la Ciudad de Mendoza y Las Heras</span></div>
-          <div class="stat"><b>Red vial</b><span>calles públicas y aperturas entre condominios</span></div>
-          <div class="stat"><b>Equipamientos</b><span>educación, salud, seguridad, comercio y transporte</span></div>
-        </div>
-      </div>
-      <div class="figs pfigs">
-        <figure><a href="pied_area.jpg" target="_blank" rel="noopener"><img src="th_pied_area.jpg" alt="Mapa de la propuesta de área de estudio y límite práctico del piedemonte, sobre aerofotografía, en POSGAR 2007 faja 2" loading="lazy"></a><figcaption>Propuesta de área de estudio y límite práctico (QGIS, POSGAR 2007 faja 2).</figcaption></figure>
-        <figure><a href="pied_delimitacion.jpg" target="_blank" rel="noopener"><img src="th_pied_delimitacion.jpg" alt="Delimitación de la zona de estudio sobre imagen de Google Earth, con el límite político y la propuesta de límite práctico" loading="lazy"></a><figcaption>Primera delimitación sobre Google Earth, comparando el límite político con el límite práctico.</figcaption></figure>
-        <figure><a href="pied_vial.jpg" target="_blank" rel="noopener"><img src="th_pied_vial.jpg" alt="Mapa de localización del área de estudio y propuesta vial con calles públicas, calle alternativa y aperturas de calle entre condominios" loading="lazy"></a><figcaption>Propuesta vial: calles públicas, calle alternativa y aperturas entre condominios.</figcaption></figure>
-        <figure><a href="pied_equipamientos.jpg" target="_blank" rel="noopener"><img src="th_pied_equipamientos.jpg" alt="Mapa de equipamientos con área de influencia de escuelas, farmacias, comisarías, gimnasios, supermercados y paradas de colectivo" loading="lazy"></a><figcaption>Equipamientos y área de influencia de las escuelas.</figcaption></figure>
-      </div>
-      <div class="chips"><span class="chip">ArcGIS</span><span class="chip">QGIS</span><span class="chip">Google Earth</span><span class="chip">POSGAR 2007</span><span class="chip">Planificación urbana</span><span class="chip">Riesgo aluvional</span><span class="chip">Análisis de proximidad</span></div>
-      <p class="pnote">Tocá cada mapa para verlo en tamaño completo.</p>
-    </article>
 
     <div class="works">
+      <article class="work wide">
+        <a href="proyecto-vivienda.html" class="wthumb"><img class="wimg" src="th_vivienda.jpg" alt="Mapa del precio mediano de las casas por zona censal en el Gran Santiago, con los valores más altos en el cono oriente" loading="lazy" width="780" height="510"></a>
+        <div class="wbody">
+          <div class="meta">2026 · Diplomado en Análisis Espacial de Datos, Universidad de Chile</div>
+          <h3>Precio de la vivienda en el Gran Santiago</h3>
+          <p>¿Cuánto valora el mercado la cercanía a plazas y parques? Crucé 102.642 ventas de casas con zonas censales, el Censo 2017 y 10.063 plazas, y comparé regresión hedónica con machine learning.</p>
+          <div class="stats mini"><div class="stat"><b>102.642</b><span>ventas analizadas</span></div><div class="stat"><b>R² 0,82</b><span>en validación espacial</span></div></div>
+          <div class="chips"><span class="chip c-code">R</span><span class="chip c-code">sf</span><span class="chip c-met">Precios hedónicos</span><span class="chip c-met">Random forest</span><span class="chip c-code">Leaflet</span></div>
+          <div class="wlinks"><a href="proyecto-vivienda.html">Ver el proyecto →</a><a href="mapa-plazas.html" target="_blank" rel="noopener">Mapa interactivo de plazas →</a></div>
+        </div>
+      </article>
       <article class="work">
-        <a href="https://github.com/geografaengelman-dev/relieves-sudamerica-argentina" target="_blank" rel="noopener"><img class="wimg" src="th_relieve_sa.jpg" alt="Detalle del mapa de relieve de América del Sur con colores de elevación" loading="lazy" width="520" height="340"></a>
-        <div class="meta">2026 · Python · Cartografía</div>
-        <h3>Relieves de América del Sur y Argentina</h3>
-        <p>Mapas de relieve sombreado con colores de elevación, los grandes ríos y la provincia de Mendoza destacada, a partir de ETOPO1 (NOAA) y Natural Earth.</p>
-        <div class="chips"><span class="chip">Python</span><span class="chip">Matplotlib</span><span class="chip">Shapely</span><span class="chip">Relieve sombreado</span></div>
-        <a href="https://github.com/geografaengelman-dev/relieves-sudamerica-argentina" target="_blank" rel="noopener">Ver mapas y código en GitHub →</a>
+        <a href="proyecto-piedemonte.html"><img class="wimg" src="th_piedemonte.jpg" alt="Detalle del mapa de la propuesta vial del piedemonte oeste de Mendoza" loading="lazy" width="520" height="340"></a>
+        <div class="meta">2021 · Planificación urbana y SIG</div>
+        <h3>Plan de Manejo Integral del Piedemonte</h3>
+        <p>Delimitación de la zona de estudio, límite práctico entre jurisdicciones, propuesta de red vial y análisis de equipamientos en el borde oeste de la Ciudad de Mendoza.</p>
+        <div class="chips"><span class="chip c-gis">ArcGIS</span><span class="chip c-gis">QGIS</span><span class="chip c-met">Planificación urbana</span></div>
+        <a href="proyecto-piedemonte.html">Ver el proyecto y los mapas →</a>
+      </article>
+      <article class="work">
+        <a href="proyecto-homicidios.html"><img class="wimg" src="th_homicidios.jpg" alt="Mapa de conglomerados LISA de la tasa de homicidios en Estados Unidos" loading="lazy" width="520" height="340"></a>
+        <div class="meta">2026 · Diplomado, Universidad de Chile</div>
+        <h3>Homicidios en EE.&nbsp;UU.: autocorrelación y regresión espacial</h3>
+        <p>I de Moran, conglomerados LISA, modelos de rezago y de error espacial, y regresión geográficamente ponderada en R.</p>
+        <div class="chips"><span class="chip c-code">R</span><span class="chip c-code">spdep</span><span class="chip c-met">GWR</span></div>
+        <a href="proyecto-homicidios.html">Ver el proyecto →</a>
       </article>
       <article class="work">
         <a href="nota-la-madrid-2026.html"><img class="wimg" src="th_inundacion_sar.jpg" alt="Imagen de radar Sentinel-1 de la inundación de La Madrid, Tucumán, el 11 de marzo de 2026" loading="lazy" width="520" height="340"></a>
         <div class="meta">2026 · Formación CopernicusLAC Panamá</div>
         <h3>Inundación en La Madrid, Tucumán, vista por radar</h3>
         <p>Comparación de imágenes de radar Sentinel-1 antes y durante la crecida del río Marapa (marzo de 2026), cruzada con la cobertura periodística para reconstruir el evento día por día.</p>
-        <div class="chips"><span class="chip">Copernicus</span><span class="chip">Sentinel-1 (radar)</span><span class="chip">Riesgo de desastres</span><span class="chip">Fuentes cruzadas</span></div>
+        <div class="chips"><span class="chip c-gis">Copernicus</span><span class="chip c-gis">Sentinel-1 (radar)</span><span class="chip c-met">Riesgo de desastres</span><span class="chip c-met">Fuentes cruzadas</span></div>
         <a href="nota-la-madrid-2026.html">Leer el análisis →</a>
       </article>
       <article class="work">
-        <a href="https://geografaengelman-dev.github.io/relieve-3d-mendoza/" target="_blank" rel="noopener"><img class="wimg" src="th_relieve3d.jpg" alt="Relieve 3D de Mendoza con los ríos principales y el límite provincial" loading="lazy" width="520" height="340"></a>
-        <div class="meta">2026 · JavaScript · Three.js · Python</div>
-        <h3>Relieve 3D de Mendoza</h3>
-        <p>Visor interactivo de la provincia en 3D, con la cordillera, el Aconcagua, los ríos principales y el límite provincial. Se gira con el mouse o el dedo.</p>
-        <div class="chips"><span class="chip">Three.js</span><span class="chip">WebGL</span><span class="chip">ETOPO1</span><span class="chip">Natural Earth</span></div>
-        <div class="wlinks"><a href="https://geografaengelman-dev.github.io/relieve-3d-mendoza/" target="_blank" rel="noopener">Abrir el visor 3D →</a><a href="https://github.com/geografaengelman-dev/relieve-3d-mendoza" target="_blank" rel="noopener">Código en GitHub →</a></div>
-      </article>
-      <article class="work">
-        <div class="meta">2022–2025 · Sector público, consultoría e independiente</div>
-        <h3>Cartografía y SIG profesional</h3>
-        <p>Cartografía y análisis territorial para la planificación urbana en la Secretaría de Desarrollo Urbano del Gobierno de Mendoza; cartografía ambiental en AIRON S.A. para un proyecto PNUMA–GEF; mapas temáticos y análisis espacial para clientes internacionales en Upwork.</p>
-        <div class="chips"><span class="chip">QGIS</span><span class="chip">ArcGIS</span><span class="chip">Cartografía temática</span><span class="chip">Planificación urbana</span></div>
-      </article>
-      <article class="work">
+        <a href="moussy_detalle.jpg" target="_blank" rel="noopener" title="Ver el mapa completo"><img class="wimg" src="th_archivo_moussy.jpg" alt="Detalle del mapa de la Provincia de Mendoza de Martin de Moussy, 1873, con la ciudad de Mendoza y los ríos Mendoza y Tunuyán" loading="lazy" width="824" height="539"></a>
+        <p class="wcap">V. Martin de Moussy, <i>Carte de la Province de Mendoza</i>, 1865 (atlas de 1873). David Rumsey Map Collection. Detalle: ríos Mendoza y Tunuyán.</p>
         <div class="meta">2018–2023 · Departamento General de Irrigación e INCIHUSA-CONICET</div>
         <h3>Archivo Histórico del Agua</h3>
-        <p>Catalogación, digitalización e ingreso a bases de datos de fondos documentales sobre la gestión del agua en Mendoza. Participé en el armado de un estativo digitalizador (Bibliohack) y en el artículo que presenta el archivo en la revista <i>Corpus</i> (2020).</p>
-        <div class="chips"><span class="chip">Catalogación</span><span class="chip">Digitalización</span><span class="chip">Bases de datos</span></div>
+        <p>Catalogación, digitalización e ingreso a bases de datos de fondos documentales sobre la gestión del agua en Mendoza. Participé en el armado de un escáner (Bibliohack) y en el artículo que presenta el archivo en la revista <i>Corpus</i> (2020).</p>
+        <div class="chips"><span class="chip c-met">Catalogación</span><span class="chip c-met">Digitalización</span><span class="chip c-met">Bases de datos</span></div>
         <div class="wlinks"><a href="https://mendoza.conicet.gov.ar/investigadores-presentaron-el-archivo-historico-del-agua-de-la-provincia-de-mendoza/" target="_blank" rel="noopener">Nota del CONICET Mendoza →</a><a href="https://aguascuyanas.org/quienes-somos/" target="_blank" rel="noopener">Laboratorio de Aguas Cuyanas →</a><a href="https://journals.openedition.org/corpusarchivos/3976" target="_blank" rel="noopener">Artículo en Corpus →</a></div>
       </article>
     </div>
@@ -545,7 +603,7 @@ footer a{color:inherit}
           <a class="btn primary" href="https://github.com/geografaengelman-dev" target="_blank" rel="noopener">Ver mi perfil en GitHub</a>
         </div>
       </div>
-      <div class="repos"><a class="repo" href="https://github.com/geografaengelman-dev/precio-vivienda-santiago" target="_blank" rel="noopener"><span class="rname">precio-vivienda-santiago</span><span class="rdesc">Precio de la vivienda y plazas en el Gran Santiago</span><span class="rlang"><i class="dot l-r"></i>R</span></a><a class="repo" href="https://github.com/geografaengelman-dev/econometria-espacial-r" target="_blank" rel="noopener"><span class="rname">econometria-espacial-r</span><span class="rdesc">Autocorrelación y regresión espacial</span><span class="rlang"><i class="dot l-r"></i>R</span></a><a class="repo" href="https://github.com/geografaengelman-dev/relieves-sudamerica-argentina" target="_blank" rel="noopener"><span class="rname">relieves-sudamerica-argentina</span><span class="rdesc">Mapas de relieve de Sudamérica y Argentina</span><span class="rlang"><i class="dot l-python"></i>Python</span></a><a class="repo" href="https://github.com/geografaengelman-dev/relieve-3d-mendoza" target="_blank" rel="noopener"><span class="rname">relieve-3d-mendoza</span><span class="rdesc">Visor 3D del relieve de Mendoza</span><span class="rlang"><i class="dot l-javascript"></i>JavaScript</span></a></div>
+      <div class="repos"><a class="repo" href="https://github.com/geografaengelman-dev/precio-vivienda-santiago" target="_blank" rel="noopener"><span class="rname">precio-vivienda-santiago</span><span class="rdesc">Precio de la vivienda y plazas en el Gran Santiago</span><span class="rlang"><i class="dot l-r"></i>R</span></a><a class="repo" href="https://github.com/geografaengelman-dev/econometria-espacial-r" target="_blank" rel="noopener"><span class="rname">econometria-espacial-r</span><span class="rdesc">Autocorrelación y regresión espacial</span><span class="rlang"><i class="dot l-r"></i>R</span></a></div>
     </div>
   </div>
 </section>
@@ -554,7 +612,7 @@ footer a{color:inherit}
   <div class="wrap">
     <div class="sec-head">
       <div><div class="label">Publicaciones</div><h2>Investigaciones colaborativas</h2></div>
-      <p>Artículos, un libro y ponencias escritos con colegas de la UNCuyo, el CONICET y universidades del exterior sobre agua, vitivinicultura, urbanización y conflictos territoriales en Mendoza. Buena parte de este conocimiento lo construí como integrante del grupo de investigación <b>Ciudad y Territorio del INCIHUSA-CONICET</b>, durante mi doctorado. Tocá cada uno para leerlo completo.</p>
+      <p>Artículos, un libro y ponencias escritos con colegas de la UNCuyo, el CONICET y universidades del exterior sobre agua, vitivinicultura, urbanización y conflictos territoriales en Mendoza. Buena parte de este conocimiento lo construí como integrante del grupo de investigación <b>Ciudad y Territorio del INCIHUSA-CONICET</b>, durante mi doctorado. Estas son algunas; tocá cada una para leerla completa.</p>
     </div>
     
     <div class="papers">
@@ -576,15 +634,6 @@ footer a{color:inherit}
           <span class="read">Leer el artículo →</span>
         </div>
       </a>
-      <a class="paper" href="https://ojs2.fch.unicen.edu.ar/ojs-3.1.0/index.php/estudios-socioterritoriales/article/download/818/721" target="_blank" rel="noopener">
-        <div class="cover cover-uco" aria-hidden="true"><svg viewBox="0 0 300 190"><path d="M20 150 L80 70 L120 110 L170 40 L280 150"/><path d="M40 160 h14"/><path d="M64 160 h14"/><path d="M88 160 h14"/><path d="M112 160 h14"/><path d="M136 160 h14"/><path d="M160 160 h14"/><path d="M184 160 h14"/><path d="M208 160 h14"/><path d="M232 160 h14"/><path d="M256 160 h14"/></svg><span>Estudios Socioterritoriales</span></div>
-        <div class="pbody">
-          <div class="meta">2020 · Estudios Socioterritoriales, 28</div>
-          <h3>Geografías del trabajo en la nueva vitivinicultura: el caso de Valle de Uco, Mendoza</h3>
-          <p>Omar Carballo Hiramatsu, Juan Pablo Fili y Anabella Engelman</p>
-          <span class="read">Leer el artículo →</span>
-        </div>
-      </a>
       <a class="paper" href="https://www.redalyc.org/journal/4075/407568123003/407568123003.pdf" target="_blank" rel="noopener">
         <div class="cover cover-rio" aria-hidden="true"><svg viewBox="0 0 300 190"><path class="hl" d="M10 60 C70 40 90 110 150 95 S240 60 290 120"/><path d="M10 80 C70 60 90 130 150 115 S240 80 290 140"/></svg><span>Anuario de Historia Regional y de las Fronteras</span></div>
         <div class="pbody">
@@ -594,57 +643,9 @@ footer a{color:inherit}
           <span class="read">Leer el artículo →</span>
         </div>
       </a>
-      <a class="paper" href="https://journals.openedition.org/corpusarchivos/3976" target="_blank" rel="noopener">
-        <div class="cover cover-archivo" aria-hidden="true"><svg viewBox="0 0 300 190"><rect x="80" y="40" width="140" height="26" rx="3"/><rect x="90" y="74" width="140" height="26" rx="3"/><rect x="80" y="108" width="140" height="26" rx="3"/><path class="hl" d="M100 53 h50 M110 87 h50 M100 121 h50"/></svg><span>Corpus. Archivos virtuales de la alteridad americana</span></div>
-        <div class="pbody">
-          <div class="meta">2020 · Corpus. Archivos virtuales de la alteridad americana, 10(2)</div>
-          <h3>El Archivo Histórico del Agua del Departamento General de Irrigación de la Provincia de Mendoza</h3>
-          <p>Facundo Martín, Mark Healey, Juan Pablo Fili, Natalia Parise y Anabella Engelman</p>
-          <span class="read">Leer el artículo →</span>
-        </div>
-      </a>
-      <a class="paper" href="http://www2.fct.unesp.br/nera/projetos/dataluta_argentina_2014b.pdf" target="_blank" rel="noopener">
-        <div class="cover cover-tierra" aria-hidden="true"><svg viewBox="0 0 300 190"><circle cx="80" cy="70" r="6" class="hl"/><circle cx="160" cy="110" r="6" class="hl"/><circle cx="220" cy="60" r="6" class="hl"/><circle cx="120" cy="140" r="6"/><path d="M30 160 C90 120 150 170 280 110"/></svg><span>Dataluta Argentina</span></div>
-        <div class="pbody">
-          <div class="meta">2016 · Dataluta Argentina · NERA-UNESP</div>
-          <h3>Banco de datos de la lucha por la tierra: conflictos agrarios en el territorio mendocino</h3>
-          <p>Equipo Dataluta Argentina, con Anabella Engelman</p>
-          <span class="read">Leer el artículo →</span>
-        </div>
-      </a>
-      <a class="paper" href="https://25.bdigital.uncu.edu.ar/ficha/6864" target="_blank" rel="noopener">
-        <div class="cover cover-libro" aria-hidden="true"><svg viewBox="0 0 300 190"><path d="M40 150 L95 95 L135 125 L190 60 L260 110"/><circle cx="95" cy="95" r="6" class="hl"/><circle cx="190" cy="60" r="6" class="hl"/><circle cx="135" cy="125" r="6"/><path class="hl" d="M40 165 h220"/></svg><span>Libro · Universidad Nacional de Cuyo</span></div>
-        <div class="pbody">
-          <div class="meta">2015 · Libro · Universidad Nacional de Cuyo</div>
-          <h3>Territorio y economía plural: una aproximación al desarrollo</h3>
-          <p>Gudiño, M. E., Benedetto, A., Gómez Carrizo, H., Gassull, V. M., Ortubia Díaz, E. C., Engelman, A. y otros</p>
-          <span class="read">Ver el libro →</span>
-        </div>
-      </a>
     </div>
-    <div class="talks">
-      <h3>Ponencias en congresos</h3>
-      <a class="talk" href="https://fau.uchile.cl/dam/jcr:502a8be8-d43c-4142-8968-1fc3a34161b5/Programa%20Oficial%20-%20Congreso%20de%20Geograf%C3%ADa%20PUCV-SOCHIGEO%202021%20(1).pdf" target="_blank" rel="noopener">
-        <span class="tyear">2021</span>
-        <span class="tbody"><strong>Litigios y procesos de apropiación hídrica en el río Tunuyán a finales del siglo XIX. Mendoza, Argentina</strong>
-        <span>Juan Pablo Fili y Anabella Engelman · XLI Congreso Nacional y XXVI Internacional de Geografía (SOCHIGEO y PUCV, Chile) · Mesa «Territorios hidrosociales y conflictos socioambientales en los Andes: una mirada transfronteriza»</span></span>
-        <span class="read">Ver el programa →</span>
-      </a>
-      <a class="talk" href="ponencia-waterlat-2019.html">
-        <span class="tyear">2019</span>
-        <span class="tbody"><strong>Desnaturalizando la cuenca aluvional del Área Metropolitana de Mendoza, Argentina: una mirada desde la ecología política sobre la institucionalización de las aguas salvajes (S. XX-XXI)</strong>
-        <span>Cómo las inundaciones urbanas de Mendoza (1928–2015) se volvieron un problema público, a partir de prensa local, fuentes documentales, mapas históricos y croquis de las obras de defensa aluvional.</span>
-        <span>Anabella Engelman · X Reunión Internacional de la Red WATERLAT-GOBACIT «Luchas por el agua», Universidad de Concepción, Chile · Taller «¿Seguridad sin justicia? Riesgos hídricos y poder en territorios indígenas de América Latina»</span></span>
-        <span class="read">Leer el resumen →</span>
-      </a>
-      <a class="talk" href="ponencia-idehesi-2018.html">
-        <span class="tyear">2018</span>
-        <span class="tbody"><strong>La mediación técnica como estrategia de valorización social del territorio en el borde oeste del Área Metropolitana de Mendoza: el caso de Mendoza Norte Country Club</strong>
-        <span>Cómo el sector inmobiliario y los organismos del Estado se vinculan para levantar «enclaves urbanos» en el piedemonte, una zona con riesgo aluvional, y cómo la hidráulica legitima esa forma de producir ciudad. Estudio de caso con planos, fotografías, entrevistas y observación directa.</span>
-        <span>Anabella Engelman · Coloquio IDEHESI-CONICET, Mesa 3</span></span>
-        <span class="read">Leer el resumen →</span>
-      </a>
-    </div>
+    <div class="more"><a class="btn primary" href="investigaciones.html">Ver todas las investigaciones →</a><span>7 publicaciones y 3 ponencias en congresos</span></div>
+
   </div>
 </section>
 
@@ -656,29 +657,30 @@ footer a{color:inherit}
     </div>
     <div class="about-grid">
       <div>
-        <p>Me formé como geógrafa en la Facultad de Filosofía y Letras de la UNCuyo y hago el doctorado en Ciencias Sociales en la misma universidad. En 2026 completé el Diplomado en Análisis Espacial de Datos de la Facultad de Arquitectura y Urbanismo de la Universidad de Chile, con formación en R, Python, bases de datos espaciales, econometría espacial y machine learning. Fui becaria doctoral del CONICET e integré proyectos de investigación sobre el agua, el territorio y la economía social, con financiamiento del IAI, la International Water Security Network y la ANPCyT.</p>
-        <p>Como analista SIG trabajé en la Secretaría de Desarrollo Urbano del Gobierno de Mendoza, en la consultora ambiental AIRON S.A. para un proyecto PNUMA–GEF y de forma independiente para clientes internacionales. También fui censista en el Censo Nacional 2022, colaboré en la edición de la revista científica <i>Proyección</i> y evalué artículos para revistas académicas.</p>
-        <p>Trabajo con un enfoque que combina la geografía física y social: entender el territorio, sus recursos y las personas que lo habitan, y traducirlo en mapas, informes y relatos claros. Hablo español e inglés (intermedio-alto) y leo francés y portugués.</p>
+        <p>Me formé como geógrafa en la UNCuyo, donde hago el doctorado en Ciencias Sociales; fui becaria doctoral del CONICET e integré el grupo de investigación Ciudad y Territorio del INCIHUSA. En 2026 completé el Diplomado en Análisis Espacial de Datos de la Universidad de Chile (R, Python, bases de datos espaciales, econometría espacial y machine learning).</p>
+        <p>Trabajé como analista SIG en el sector público, en consultoría ambiental (proyecto PNUMA–GEF) y para clientes internacionales. Combino la geografía física y la social para traducir el territorio en mapas, informes y relatos claros. Hablo español e inglés.</p>
         <div class="pubs">
           <div class="label">Perfiles académicos</div>
           <p style="margin:10px 0 0;color:var(--muted)">Mis artículos están en la sección <a href="#investigaciones">Investigaciones colaborativas</a> y en estos perfiles:</p>
           <div class="ctas"><a class="btn ghost" href="https://www.linkedin.com/in/anabella-engelman-ab1aaa80/" target="_blank" rel="noopener">LinkedIn</a><a class="btn ghost" href="https://github.com/geografaengelman-dev" target="_blank" rel="noopener">GitHub</a><a class="btn ghost" href="https://orcid.org/0000-0002-0718-2762" target="_blank" rel="noopener">ORCID</a><a class="btn ghost" href="https://scholar.google.com/citations?user=TMBzy7kAAAAJ&amp;hl=es" target="_blank" rel="noopener">Google Scholar</a><a class="btn ghost" href="https://www.researchgate.net/profile/Anabella-Engelman" target="_blank" rel="noopener">ResearchGate</a><a class="btn ghost" href="https://ri.conicet.gov.ar/author/77893" target="_blank" rel="noopener">CONICET Digital</a></div>
         </div>
       </div>
-      <ol class="timeline">
-        <li><span class="yr">2011–2015</span><span class="what">Becaria del Instituto CIFOT (UNCuyo): economía social y desarrollo territorial</span></li>
+      <div><ol class="timeline">
+        <li><span class="yr">2026</span><span class="what">Diplomado en Análisis Espacial de Datos, Universidad de Chile</span></li>
+        <li><span class="yr">2023–2025</span><span class="what">Analista SIG independiente para clientes internacionales (Upwork)</span></li>
+        <li><span class="yr">2023–2024</span><span class="what">Analista SIG, AIRON S.A. Consultora Ambiental (proyecto PNUMA–GEF)</span></li>
+        <li><span class="yr">2022–2023</span><span class="what">Analista SIG, Secretaría de Desarrollo Urbano, Gobierno de Mendoza</span></li>
+        <li><span class="yr">2020–2022</span><span class="what">Docente adscripta universitaria, Extensión y Territorio</span></li>
+        <li><span class="yr">2018–2023</span><span class="what">Archivo Histórico del Agua: catalogación y digitalización</span></li>
+        <li><span class="yr">2016–2023</span><span class="what">Doctorado en Ciencias Sociales (UNCuyo), becaria doctoral del CONICET, integrante del grupo de investigación Ciudad y Territorio del INCIHUSA-CONICET. Tesis en escritura</span></li>
+        <li><span class="yr">2015–2023</span><span class="what">Asesoría en transporte escolar: recorridos, normativa y administración</span></li>
+        <li><span class="yr">2015</span><span class="what">Geógrafa, Universidad Nacional de Cuyo</span></li>
+      </ol>
+      <details class="more-tl"><summary>Ver trayectoria completa</summary><ol class="timeline">
         <li><span class="yr">2013–2021</span><span class="what">Docente de Geografía en escuelas secundarias (DGE Mendoza)</span></li>
         <li><span class="yr">2013–2019</span><span class="what">Proyectos internacionales sobre seguridad hídrica (IAI, IWSN) y conflictos ambientales (ANPCyT)</span></li>
-        <li><span class="yr">2015</span><span class="what">Geógrafa, Universidad Nacional de Cuyo (promedio 8,03)</span></li>
-        <li><span class="yr">2015–2023</span><span class="what">Asesoría en transporte escolar: recorridos, normativa y administración</span></li>
-        <li><span class="yr">2016–2023</span><span class="what">Doctorado en Ciencias Sociales (UNCuyo), becaria doctoral del CONICET, integrante del grupo de investigación Ciudad y Territorio del INCIHUSA-CONICET. Tesis en escritura</span></li>
-        <li><span class="yr">2018–2023</span><span class="what">Archivo Histórico del Agua: catalogación y digitalización</span></li>
-        <li><span class="yr">2020–2022</span><span class="what">Docente adscripta universitaria, Extensión y Territorio</span></li>
-        <li><span class="yr">2022–2023</span><span class="what">Analista SIG, Secretaría de Desarrollo Urbano, Gobierno de Mendoza</span></li>
-        <li><span class="yr">2023–2024</span><span class="what">Analista SIG, AIRON S.A. Consultora Ambiental (proyecto PNUMA–GEF)</span></li>
-        <li><span class="yr">2023–2025</span><span class="what">Analista SIG independiente para clientes internacionales (Upwork)</span></li>
-        <li><span class="yr">2026</span><span class="what">Diplomado en Análisis Espacial de Datos, Universidad de Chile</span></li>
-      </ol>
+        <li><span class="yr">2011–2015</span><span class="what">Becaria del Instituto CIFOT (UNCuyo): economía social y desarrollo territorial</span></li>
+      </ol></details></div>
     </div>
   </div>
 </section>
@@ -724,6 +726,16 @@ footer a{color:inherit}
         <p class="note">Presencial en el Gran Mendoza. Virtual para todo el país.</p>
       </div>
     </div>
+    <form class="form" id="cform">
+      <h3>Escribime desde acá</h3>
+      <p class="hint">Completá los datos y se abre tu correo con el mensaje listo para enviar.</p>
+      <label>Nombre<input name="nombre" required autocomplete="name"></label>
+      <label>Tu email<input name="email" type="email" required autocomplete="email"></label>
+      <label class="full">¿Qué necesitás?<select name="servicio"><option value="">Elegí un servicio</option><option>Clases o asesoría de tesis</option><option>Curso de QGIS</option><option>Mapa a medida o análisis espacial</option><option>Informe de entorno inmobiliario</option><option>Consultoría socioambiental</option><option>Historia y patrimonio</option><option>Otro</option></select></label>
+      <label class="full">Mensaje<textarea name="mensaje" required placeholder="Contame brevemente qué necesitás, para cuándo y dónde."></textarea></label>
+      <button type="submit">Enviar consulta</button>
+      <p class="ok" id="cform-ok" role="status"></p>
+    </form>
   </div>
 </section>
 <footer><div class="wrap"><span>© 2026 Anabella Engelman · Geógrafa · <a href="https://github.com/geografaengelman-dev" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/anabella-engelman-ab1aaa80/" target="_blank" rel="noopener">LinkedIn</a></span><span>32°53′ S · 68°50′ O</span></div></footer>
@@ -771,3 +783,31 @@ footer a{color:inherit}
   fit();addEventListener('resize',fit);
 })();
 </script>
+<script>(function(){var h=document.querySelector('header'),b=document.querySelector('.menu-btn');if(!b)return;
+b.addEventListener('click',function(){var o=h.classList.toggle('open');b.setAttribute('aria-expanded',o);});
+document.querySelectorAll('header nav a').forEach(function(a){a.addEventListener('click',function(){h.classList.remove('open');b.setAttribute('aria-expanded','false');});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){h.classList.remove('open');b.setAttribute('aria-expanded','false');}});})();</script>
+<script>(function(){
+  var red=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // sección activa en el menú
+  var links={};document.querySelectorAll('header nav a[href^="#"]').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
+  if('IntersectionObserver' in window){var so=new IntersectionObserver(function(es){es.forEach(function(e){var a=links[e.target.id];if(!a)return;if(e.isIntersecting){Object.values(links).forEach(function(x){x.classList.remove('active');x.removeAttribute('aria-current');});a.classList.add('active');a.setAttribute('aria-current','true');}});},{rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(links).forEach(function(id){var s=document.getElementById(id);if(s)so.observe(s);});}
+  // contadores de las métricas
+  var fmt=function(v,dec){return v.toLocaleString('es-AR',{minimumFractionDigits:dec,maximumFractionDigits:dec});};
+  var nums=[];document.querySelectorAll('.stat b').forEach(function(b){var t=b.textContent,m=t.match(/\d{1,3}(?:\.\d{3})+|\d+(?:,\d+)?/);if(!m)return;
+    var raw=m[0],dec=raw.indexOf(',')>-1?raw.split(',')[1].length:0,val=parseFloat(raw.replace(/\./g,'').replace(',','.'));
+    nums.push({b:b,pre:t.slice(0,m.index),post:t.slice(m.index+raw.length),val:val,dec:dec,txt:t});});
+  if(red||!('IntersectionObserver' in window))return;
+  nums.forEach(function(n){n.b.setAttribute('aria-label',n.txt);n.b.textContent=n.pre+fmt(0,n.dec)+n.post;});
+  var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;co.unobserve(e.target);var n=nums.find(function(x){return x.b===e.target;}),t0=null;
+    function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/1400),ease=1-Math.pow(1-k,3);n.b.textContent=n.pre+fmt(n.val*ease,n.dec)+n.post;if(k<1)requestAnimationFrame(step);else n.b.textContent=n.txt;}
+    requestAnimationFrame(step);});},{threshold:.6});
+  nums.forEach(function(n){co.observe(n.b);});
+  // formulario de contacto: arma un mail
+  var f=document.getElementById('cform');if(f)f.addEventListener('submit',function(ev){ev.preventDefault();var d=new FormData(f);
+    var sub='Consulta web: '+(d.get('servicio')||'general')+' – '+d.get('nombre');
+    var body='Hola Anabella,\n\n'+d.get('mensaje')+'\n\n'+d.get('nombre')+'\n'+d.get('email');
+    location.href='mailto:geografaengelman@gmail.com?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(body);
+    document.getElementById('cform-ok').textContent='Se abrió tu programa de correo con el mensaje listo para enviar. Si no se abrió, escribime a geografaengelman@gmail.com.';});
+})();</script><script>(function(){var h=document.documentElement;document.querySelectorAll('.theme-btn').forEach(function(b){b.addEventListener('click',function(){var t=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',t);try{localStorage.setItem('tema',t);}catch(e){}var m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#141917':'#2D6A4F';});});})();</script>
