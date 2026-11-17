@@ -141,7 +141,7 @@ figcaption{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.45}
 .contact{background:var(--accent-dark);color:var(--paper)}
 .contact .label{color:var(--signal)}
 .contact h2{font-size:clamp(32px,4.6vw,52px);max-width:18ch;margin-top:14px}
-.contact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px}
+.contact-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:40px}
 .card{border:1px solid color-mix(in srgb,var(--paper) 22%,transparent);border-radius:8px;padding:22px;min-width:0}
 .card .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in srgb,var(--paper) 65%,transparent)}
 .card .v{font-size:21px;font-weight:500;margin:6px 0 14px;overflow-wrap:anywhere;user-select:all}
@@ -237,6 +237,50 @@ a.talk:hover{transform:translateY(-2px)}div.talk{grid-template-columns:auto minm
 @media (min-width:981px){.paper:last-child:nth-child(3n+1){grid-column:1/-1;flex-direction:row}.paper:last-child:nth-child(3n+1) .cover{flex:0 0 calc((100% - 48px)/3);aspect-ratio:auto;min-height:230px}.paper:last-child:nth-child(3n+1) .pbody{padding:28px 32px;justify-content:center}}
 @media (min-width:621px) and (max-width:980px){.paper:last-child:nth-child(odd){grid-column:1/-1;flex-direction:row}.paper:last-child:nth-child(odd) .cover{flex:0 0 calc((100% - 24px)/2);aspect-ratio:auto;min-height:220px}}
 @media (max-width:620px){.papers{grid-template-columns:minmax(0,1fr)}}
+
+/* bandas con mapa topográfico de Mendoza */
+section.has-band{padding-top:0}
+.mapband{position:relative;margin-bottom:48px;background:linear-gradient(180deg,rgba(250,249,246,.1),rgba(250,249,246,0) 50%,rgba(250,249,246,.7)),var(--map) center/cover no-repeat;border-block:1px solid rgba(26,26,26,.06)}
+.mapband .wrap{padding-block:clamp(110px,13vw,170px) clamp(48px,6vw,80px)}
+.mapband .sec-head{margin-bottom:0}
+.mapband .sec-head p{background:rgba(250,249,246,.78);padding:14px 18px;border-radius:14px;backdrop-filter:blur(2px);color:var(--ink)}
+.mapband .sec-head h2{text-shadow:0 0 18px rgba(250,249,246,.9),0 0 4px rgba(250,249,246,.9)}
+.mapcap{position:absolute;right:16px;bottom:10px;font:500 11px var(--f-body);letter-spacing:.06em;color:#8A7A66;background:rgba(250,249,246,.75);padding:3px 10px;border-radius:999px}
+@media (max-width:620px){.mapcap{display:none}}
+
+/* perfil de GitHub */
+.nav-gh{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;color:var(--ink);border:1px solid var(--rule)}.nav-gh:hover{color:var(--accent);border-color:var(--accent)}
+.ghband .label{display:inline-block;padding:4px 12px;border-radius:999px;margin-bottom:0}
+.ghband{margin-top:48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:32px;align-items:center;padding:clamp(22px,3.4vw,40px);border-radius:var(--radius);background:var(--accent-dark);color:var(--paper)}
+.ghintro{display:flex;gap:18px;align-items:flex-start}
+.ghicon{flex:0 0 auto;color:var(--paper);opacity:.9;margin-top:4px}
+.ghband .label{color:var(--contour);background:rgba(250,249,246,.08)}
+.ghband h3{font-size:clamp(24px,3vw,32px);margin:8px 0 10px;color:var(--paper)}
+.ghband p{color:rgba(250,249,246,.8);margin:0 0 18px;max-width:46ch}
+.ghband .btn.primary{background:var(--paper);color:var(--accent-dark)}
+.repos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.repo{display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:14px;background:rgba(250,249,246,.06);border:1px solid rgba(250,249,246,.14);text-decoration:none;color:var(--paper);transition:background .2s,transform .2s;min-width:0}
+.repo:hover{background:rgba(250,249,246,.12);transform:translateY(-2px)}
+.rname{font:600 14px var(--f-body);color:#fff;overflow-wrap:anywhere}
+.rdesc{font-size:13px;color:rgba(250,249,246,.72);line-height:1.35}
+.rlang{font-size:12px;color:rgba(250,249,246,.7);display:flex;align-items:center;gap:6px;margin-top:auto}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}.l-r{background:#198CE7}.l-python{background:#3572A5}.l-javascript{background:#F1E05A}
+footer a{color:inherit}
+@media (max-width:980px){.contact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ghband{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:620px){.repos{grid-template-columns:minmax(0,1fr)}.contact-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* fuentes de cartografía histórica */
+.sources{margin-top:44px;padding:clamp(22px,3.2vw,36px);border-radius:var(--radius);background:#F3EBDD;border:1px solid #E4D6BF;background-image:repeating-linear-gradient(0deg,rgba(150,120,80,.05) 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,rgba(150,120,80,.05) 0 1px,transparent 1px 28px)}
+.sources-head h3{font-size:22px;margin-bottom:6px}
+.sources-head p{margin:0 0 20px;color:var(--muted);max-width:64ch}
+.srcs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.src{display:flex;flex-direction:column;gap:8px;padding:16px 18px;border-radius:14px;background:rgba(250,249,246,.85);border:1px solid #E4D6BF;text-decoration:none;color:var(--ink);transition:transform .2s,box-shadow .2s;min-width:0}
+.src:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.sname{font:600 16px/1.25 var(--f-display);color:#6B4F32}
+.sdesc{font-size:13.5px;color:var(--muted);line-height:1.4}
+.sgo{margin-top:auto;color:var(--signal);font-weight:600;font-size:13.5px}
+@media (max-width:980px){.srcs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.srcs{grid-template-columns:minmax(0,1fr)}}
 </style>
 
 <header>
@@ -247,7 +291,7 @@ a.talk:hover{transform:translateY(-2px)}div.talk{grid-template-columns:auto minm
       <a href="#trabajos">Trabajos</a>
       <a href="#investigaciones">Investigaciones</a>
       <a href="#trayectoria">Trayectoria</a>
-      <a class="btn-nav" href="#contacto">Hablemos</a>
+      <a class="nav-gh" href="https://github.com/geografaengelman-dev" target="_blank" rel="noopener" aria-label="Mi perfil en GitHub" title="Mi perfil en GitHub"><svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a><a class="btn-nav" href="#contacto">Hablemos</a>
     </nav>
   </div>
 </header>
@@ -273,6 +317,7 @@ a.talk:hover{transform:translateY(-2px)}div.talk{grid-template-columns:auto minm
       <div><div class="label">Leyenda</div><h2>Servicios</h2></div>
       <p>Cuatro áreas de trabajo, para particulares, estudiantes, empresas e instituciones. Presencial en el Gran Mendoza o virtual.</p>
     </div>
+    
     <div class="legend">
       <article class="group">
         <div class="ghead">
@@ -338,6 +383,7 @@ a.talk:hover{transform:translateY(-2px)}div.talk{grid-template-columns:auto minm
       <div><div class="label">Portafolio</div><h2>Trabajos</h2></div>
       <p>Una muestra de proyectos con datos reales: modelos, mapas, cartografía profesional, archivos e investigación.</p>
     </div>
+    
 
     <article class="feature">
       <div class="feature-top">
@@ -430,6 +476,19 @@ a.talk:hover{transform:translateY(-2px)}div.talk{grid-template-columns:auto minm
         <div class="wlinks"><a href="https://mendoza.conicet.gov.ar/investigadores-presentaron-el-archivo-historico-del-agua-de-la-provincia-de-mendoza/" target="_blank" rel="noopener">Nota del CONICET Mendoza →</a><a href="https://aguascuyanas.org/quienes-somos/" target="_blank" rel="noopener">Laboratorio de Aguas Cuyanas →</a><a href="https://journals.openedition.org/corpusarchivos/3976" target="_blank" rel="noopener">Artículo en Corpus →</a></div>
       </article>
     </div>
+
+    <div class="ghband">
+      <div class="ghintro">
+        <div class="ghicon"><svg viewBox="0 0 16 16" width="34" height="34" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></div>
+        <div>
+          <div class="label">Código abierto</div>
+          <h3>Mi perfil en GitHub</h3>
+          <p>El código, los datos y la documentación de mis proyectos, para que cualquiera pueda revisar cómo trabajo y reproducir los resultados.</p>
+          <a class="btn primary" href="https://github.com/geografaengelman-dev" target="_blank" rel="noopener">Ver mi perfil en GitHub</a>
+        </div>
+      </div>
+      <div class="repos"><a class="repo" href="https://github.com/geografaengelman-dev/precio-vivienda-santiago" target="_blank" rel="noopener"><span class="rname">precio-vivienda-santiago</span><span class="rdesc">Precio de la vivienda y plazas en el Gran Santiago</span><span class="rlang"><i class="dot l-r"></i>R</span></a><a class="repo" href="https://github.com/geografaengelman-dev/econometria-espacial-r" target="_blank" rel="noopener"><span class="rname">econometria-espacial-r</span><span class="rdesc">Autocorrelación y regresión espacial</span><span class="rlang"><i class="dot l-r"></i>R</span></a><a class="repo" href="https://github.com/geografaengelman-dev/relieves-sudamerica-argentina" target="_blank" rel="noopener"><span class="rname">relieves-sudamerica-argentina</span><span class="rdesc">Mapas de relieve de Sudamérica y Argentina</span><span class="rlang"><i class="dot l-python"></i>Python</span></a><a class="repo" href="https://github.com/geografaengelman-dev/relieve-3d-mendoza" target="_blank" rel="noopener"><span class="rname">relieve-3d-mendoza</span><span class="rdesc">Visor 3D del relieve de Mendoza</span><span class="rlang"><i class="dot l-javascript"></i>JavaScript</span></a></div>
+    </div>
   </div>
 </section>
 
@@ -439,6 +498,7 @@ a.talk:hover{transform:translateY(-2px)}div.talk{grid-template-columns:auto minm
       <div><div class="label">Publicaciones</div><h2>Investigaciones colaborativas</h2></div>
       <p>Artículos, un libro y ponencias escritos con colegas de la UNCuyo, el CONICET y universidades del exterior sobre agua, vitivinicultura, urbanización y conflictos territoriales en Mendoza. Tocá cada uno para leerlo completo.</p>
     </div>
+    
     <div class="papers">
       <a class="paper" href="https://revistas.uncu.edu.ar/ojs3/index.php/beg/article/download/4747/3469" target="_blank" rel="noopener">
         <div class="cover cover-urbano" aria-hidden="true"><svg viewBox="0 0 300 190"><rect x="40" y="40" width="60" height="45"/><rect x="110" y="40" width="70" height="45"/><rect x="190" y="40" width="70" height="45"/><rect x="40" y="95" width="100" height="60"/><rect x="150" y="95" width="110" height="60" class="hl"/></svg><span>Boletín de Estudios Geográficos</span></div>
@@ -526,6 +586,13 @@ a.talk:hover{transform:translateY(-2px)}div.talk{grid-template-columns:auto minm
         <span>Anabella Engelman · Jornadas de Ecología Política 2019</span></span>
       </div>
     </div>
+    <div class="sources">
+      <div class="sources-head">
+        <h3>Archivos de cartografía histórica que consulto</h3>
+        <p>Repositorios abiertos de mapas antiguos que uso para investigar la historia del territorio, del agua y de las ciudades.</p>
+      </div>
+      <div class="srcs"><a class="src" href="https://www.davidrumsey.com/" target="_blank" rel="noopener"><span class="sname">David Rumsey Map Collection</span><span class="sdesc">Más de 150.000 mapas históricos digitalizados de todo el mundo, con atlas argentinos del siglo XIX.</span><span class="sgo">Visitar →</span></a><a class="src" href="https://www.educ.ar/recursos/129472/mapas-historicos-del-actual-territorio-argentino" target="_blank" rel="noopener"><span class="sname">educ.ar · Mapas históricos del territorio argentino</span><span class="sdesc">Mapas físicos y políticos de 1852 a 1954, de Du Graty, Paz Soldán y Kühn, entre otros.</span><span class="sgo">Visitar →</span></a><a class="src" href="https://www.educ.ar/recursos/129474" target="_blank" rel="noopener"><span class="sname">educ.ar · Mapas históricos de las provincias</span><span class="sdesc">Colección de mapas antiguos del territorio de cada provincia argentina.</span><span class="sgo">Visitar →</span></a><a class="src" href="https://viejosmapas.com/" target="_blank" rel="noopener"><span class="sname">Viejos Mapas</span><span class="sdesc">Archivo digital de cartografía histórica de Argentina, Sudamérica y el mundo.</span><span class="sgo">Visitar →</span></a></div>
+    </div>
   </div>
 </section>
 
@@ -595,6 +662,11 @@ a.talk:hover{transform:translateY(-2px)}div.talk{grid-template-columns:auto minm
         <button type="button" id="copy-email">Copiar email</button>
       </div>
       <div class="card">
+        <div class="k">GitHub</div>
+        <div class="v">geografaengelman-dev</div>
+        <a href="https://github.com/geografaengelman-dev" target="_blank" rel="noopener">Ver mis proyectos</a>
+      </div>
+      <div class="card">
         <div class="k">Dónde</div>
         <div class="v">Godoy Cruz, Mendoza</div>
         <p class="note">Presencial en el Gran Mendoza. Virtual para todo el país.</p>
@@ -602,7 +674,7 @@ a.talk:hover{transform:translateY(-2px)}div.talk{grid-template-columns:auto minm
     </div>
   </div>
 </section>
-<footer><div class="wrap"><span>© 2026 Anabella Engelman · Geógrafa</span><span>32°53′ S · 68°50′ O</span></div></footer>
+<footer><div class="wrap"><span>© 2026 Anabella Engelman · Geógrafa · <a href="https://github.com/geografaengelman-dev" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/anabella-engelman-ab1aaa80/" target="_blank" rel="noopener">LinkedIn</a></span><span>32°53′ S · 68°50′ O</span></div></footer>
 
 <script>
 (function(){
